@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ pageTitle }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/main.css">
+        <link rel="stylesheet" type="text/css" href="../swagger/swagger-ui.css" >
+    </head>
+    <body>
+        <section class="hero hero--api">
+            <header class="hero__header">
+                <a class="hero__logolink" href="/">
+                    <img src="/assets/bm_logo.svg" alt="Logo Brandmaker">
+                </a>
+                <nav class="mainnav">
+                    {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({
+                        listElement: "ul",           
+                        listItemElement: "li",        
+                        listClass: "mainnav__list",                
+                        listItemClass: "mainnav__listitem",           
+                        listItemHasChildrenClass: "mainnav__listitem--haschildren", 
+                        activeListItemClass: "mainnav__listitem--active",     
+                        anchorClass: "mainnav__listitemlink",             
+                        activeAnchorClass: "",  
+                        showExcerpt: false,
+                        isChildList: false
+                    }) | safe }}
+                </nav>
+                <section class="hero__slogan hero__slogan--api">
+                    <div class="hero__text">
+                        <h1 class="hero__headline">{{ module }}</h1>
+                        <p class="hero__p hero__p--strong">{{ moduleSummary }}</p>
+                    </div>
+                </section>
+            </header>
+        </section>
+        <div id="swagger-ui"></div>
+            <script src="../swagger/swagger-ui-bundle.js"> </script>
+            <script src="../swagger/swagger-ui-standalone-preset.js"> </script>
+            <script>
+                window.onload = function() {
+                // Begin Swagger UI call region
+                const ui = SwaggerUIBundle({
+                    url: "swagger.{{ swaggerFile }}",
+                    dom_id: '#swagger-ui',
+                    docExpansion: "full",
+                    deepLinking: true,
+                    presets: [
+                        SwaggerUIBundle.presets.apis,
+                        SwaggerUIStandalonePreset
+                    ],
+                    plugins: [
+                        SwaggerUIBundle.plugins.DownloadUrl
+                    ],
+                    layout: "StandaloneLayout"
+                })
+                // End Swagger UI call region
+                window.ui = ui
+                console.log(swaggerFile)
+            }
+        </script>
+    </body>
+</html>

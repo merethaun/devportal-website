@@ -1,0 +1,70 @@
+.mainnav 
+    position absolute
+    top 3.5rem
+    right 2rem
+
+    &__list 
+        display flex
+        list-style none
+
+        &item 
+            margin 0 1rem
+            position relative
+            display block
+            &link 
+                padding 0 1rem
+                color white
+                font-size 1.25rem
+                text-decoration none
+                display block
+                &:before
+                    display: block;
+                    content: attr(title);
+                    font-weight: bold
+                    height: 0;
+                    overflow: hidden;
+                    visibility: hidden;
+        
+            // Sub
+            ul
+                visibility hidden
+                padding 0
+                position absolute
+                top -.5rem
+                padding-top 3rem
+                left -6rem
+                right -6rem
+                width calc(100% + 12rem)
+                text-align left
+                opacity 0
+                transition opacity 0.3s ease-out
+                z-index 3
+                background white
+                border-radius 4px
+                box-shadow 0 0 30px rgba(0,0,0,.5)
+                padding-bottom 1rem
+                .mainnav__listitem
+                    display block
+                    &link
+                        color $bg-medium
+                        padding .5rem 1rem
+                        line-height 1
+                        display block
+                        font-weight 400
+                        transition all .3s ease-out
+                    &:hover
+                        z-index 3
+                        > a
+                            color $orange
+                            z-index 4
+            &:hover
+                z-index 3
+                > .mainnav__listitemlink
+                    color $orange
+                    z-index 10
+                    position: relative
+                &.mainnav__listitem--haschildren
+                    font-weight bold
+                ul
+                    visibility visible
+                    opacity 1

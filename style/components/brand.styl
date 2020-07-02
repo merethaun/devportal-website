@@ -1,0 +1,62 @@
+body 
+    font-family "Calibri", sans-serif
+
+
+a 
+    color #F95B02
+
+
+.hero
+    height 100vh
+    width 100%
+    background rgb(12,15,44)
+    background linear-gradient(0deg, rgba(12,15,44,1) 0%, rgba(14,19,60,1) 100%)
+    color white
+    &--api, .inner &
+        height auto
+        .hero__p
+            margin-bottom 0
+        .hero__text
+            margin-bottom 1rem
+    &__header 
+        max-width 1400px
+        margin 0 auto
+        padding 0 2rem
+        position relative
+
+    &__logolink 
+        position absolute
+        top 3rem
+        left 1rem
+
+    &__slogan 
+        text-align center
+        max-width 1200px
+        margin 0 auto
+        display flex
+        align-items center
+        height 100vh
+        justify-content center
+        &--api, .inner & 
+            height auto
+
+    &__text 
+        margin-bottom 4rem
+
+    &__headline 
+        font-size 7rem
+        margin 6rem 0 2rem
+        a 
+            color white
+            text-decoration-color #F95B02
+
+    &__p 
+        font-size 1.5rem
+        opacity .75
+        max-width 1000px
+        margin 0 auto 2rem
+        &--strong 
+            font-weight 600
+            opacity 1
+    .cta 
+        margin-top 3rem
