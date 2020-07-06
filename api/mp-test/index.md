@@ -2,10 +2,10 @@
 layout: pages/api.njk
 pageTitle: Media Pool (current state)
 module: MediaPool
-swaggerFile: https://nexus.dev.brandmaker.com/repository/documentation/com.brandmaker.dse/dse-external-api/rest-api/6.8/enunciate/docs/ui/swagger.json
-moduleSummary: Open APIs enable our customers to create their own solutions on top of our powerful MRM.
+swaggerFile: https://nexus.dev.brandmaker.com/repository/documentation/com.brandmaker.mms/mediapool-rest-api/64.0.1-6.8/rest-api/ui/swagger.json
+moduleSummary: This is an API Swagger.json directly from nexus.
 eleventyNavigation:
   key: mp-test
-  title: MediaPool (current state)
+  title: MediaPool (nexus)
   parent: API
 ---
