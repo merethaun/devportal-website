@@ -42,7 +42,7 @@
                 window.onload = function() {
                 // Begin Swagger UI call region
                 const ui = SwaggerUIBundle({
-                    url: "swagger.{{ swaggerFile }}",
+                    url: "{{ swaggerFile }}",
                     dom_id: '#swagger-ui',
                     docExpansion: "full",
                     deepLinking: true,
