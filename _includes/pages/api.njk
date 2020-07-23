@@ -5,9 +5,9 @@
         <title>{{ pageTitle }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/main.css">
-        <link rel="stylesheet" type="text/css" href="../swagger/swagger-ui.css" >
+        <link rel="stylesheet" type="text/css" href="../swagger/swagger-ui.css?v=2" >
     </head>
-    <body>
+    <body class="api">
         <section class="hero hero--api">
             <header class="hero__header">
                 <a class="hero__logolink" href="/">
@@ -39,7 +39,7 @@
             <script src="../swagger/swagger-ui-bundle.js"> </script>
             <script src="../swagger/swagger-ui-standalone-preset.js"> </script>
             <script>
-                {/*window.onload = function() {
+                window.onload = function() {
                 // Begin Swagger UI call region
                 const ui = SwaggerUIBundle({
                     url: "{{ swaggerFile }}",
@@ -57,8 +57,7 @@
                 })
                 // End Swagger UI call region
                 window.ui = ui
-                console.log(swaggerFile)
-            }*/}
+            }
         </script>
     </body>
 </html>
