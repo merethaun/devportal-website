@@ -44,7 +44,7 @@
                 const ui = SwaggerUIBundle({
                     url: "{{ swaggerFile }}",
                     dom_id: '#swagger-ui',
-                    docExpansion: "full",
+                    //docExpansion: "full",
                     deepLinking: true,
                     presets: [
                         SwaggerUIBundle.presets.apis,
@@ -53,7 +53,8 @@
                     plugins: [
                         SwaggerUIBundle.plugins.DownloadUrl
                     ],
-                    layout: "StandaloneLayout"
+                    layout: "StandaloneLayout",
+                    highlightSizeThreshold: 1,
                 })
                 // End Swagger UI call region
                 window.ui = ui
