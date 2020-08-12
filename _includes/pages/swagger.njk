@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ pageTitle }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/main.css">
+        <link rel="stylesheet" type="text/css" href="../../../../swagger/swagger-ui.css?v=2" >
+    </head>
+    <body class="api">
+        {% include 'components/topbar.njk' %}
+        <section class="hero hero--api">
+            <header class="hero__header">
+                <section class="hero__slogan hero__slogan--api">
+                    <div class="hero__text">
+                        <h1 class="hero__headline">{{ module }}</h1>
+                    </div>
+                </section>
+            </header>
+            <div id="swagger-ui"></div>
+            <script src="../../../../swagger/swagger-ui-bundle.js"> </script>
+            <script src="../../../../swagger/swagger-ui-standalone-preset.js"> </script>
+            <script>
+                window.onload = function() {
+                    // Begin Swagger UI call region
+                    const ui = SwaggerUIBundle({
+                        url: "{{ swaggerFile }}",
+                        dom_id: '#swagger-ui',
+                        //docExpansion: "full",
+                        deepLinking: false,
+                        presets: [
+                            SwaggerUIBundle.presets.apis,
+                            SwaggerUIStandalonePreset
+                        ],
+                        plugins: [
+                            SwaggerUIBundle.plugins.DownloadUrl
+                        ],
+                        layout: "StandaloneLayout",
+                        highlightSizeThreshold: 1,
+                    })
+                    // End Swagger UI call region
+                    window.ui = ui
+                }
+            </script>
+        </section>
+    </body>
+</html>

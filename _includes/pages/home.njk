@@ -7,38 +7,19 @@
         <link rel="stylesheet" href="/main.css">
     </head>
     <body class="{{ bodyClass }}">
+        {% include 'components/topbar.njk' %}
         <section class="hero">
-            <header class="hero__header">
-                <a class="hero__logolink" href="/">
-                    <img src="/assets/bm_logo.svg" alt="Logo Brandmaker">
-                </a>
-                <nav class="mainnav">
-                    {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({
-                        listElement: "ul",           
-                        listItemElement: "li",        
-                        listClass: "mainnav__list",                
-                        listItemClass: "mainnav__listitem",           
-                        listItemHasChildrenClass: "mainnav__listitem--haschildren", 
-                        activeListItemClass: "mainnav__listitem--active",     
-                        anchorClass: "mainnav__listitemlink",             
-                        activeAnchorClass: "",  
-                        showExcerpt: false,
-                        isChildList: false
-                    }) | safe }}
-                </nav>
-                <section class="hero__slogan">
-                    <div class="hero__text">
-                        <h1 class="hero__headline">{{ claim | safe }}</h1>
-                        <p class="hero__p">{{ subclaim }}</p>
-                        <p class="hero__p hero__p--strong">{{ ctaDescription }}</p>
-                        {% if ctaLinkText %}
+            <section class="hero__slogan">
+                <div class="hero__text">
+                    <h1 class="hero__headline">{{ claim | safe }}</h1>
+                    <p class="hero__p">{{ subclaim }}</p>
+                    <p class="hero__p hero__p--strong">{{ ctaDescription }}</p>
+                    {% if ctaLinkText %}
                         <a class="cta" href="{{ ctaLink }}">{{ ctaLinkText }}</a>
-                        {% endif %}
-                    </div>
-                </section>
-            </header>
+                    {% endif %}
+                </div>
+            </section>
         </section>
-        <h1>{{ pageTitle }}</h1>
         {{ content | safe }}
     </body>
 </html>

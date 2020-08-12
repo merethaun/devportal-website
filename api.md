@@ -3,8 +3,5 @@ layout: pages/home.njk
 bodyClass: inner
 pageTitle: Brandmaker Dev Portal
 eleventyNavigation:
-  key: API
+    key: api
 ---
-# API overview follows
-
-This is a paragraph of text.
