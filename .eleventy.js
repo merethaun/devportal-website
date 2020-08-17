@@ -3,7 +3,6 @@ const fg = require('fast-glob');
 let Nunjucks = require("nunjucks");
 
 const modulesUnstuctured = fg.sync('api/**', { onlyFiles: false, deep: 4, objectMode: true });
-
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("main.css");
@@ -51,9 +50,22 @@ module.exports = function (eleventyConfig) {
         [moduleName, lastProductVersion]
     */
     let modulePage = [];
+    /*
+        structure:
+        [moduleName, productVersion, lastApiVersion]
+    */
+   let productVersionPage = [];
+   /*
+        structure:
+        [moduleName, productVersion, apiVersion, file]
+    */
+    let apiVersionPage = [];
+
+    var lastProductVersion;
+    var lastApiVersion;
+
     modulesStructured.forEach(({ moduleName, productVersions }) => {
-        var lastProductVersion;
-        productVersions.forEach(({ productVersion }) => {
+        productVersions.forEach(({ productVersion, apiVersions }) => {
             if (lastProductVersion == null) {
                 lastProductVersion = productVersion;
             } else {
@@ -62,24 +74,7 @@ module.exports = function (eleventyConfig) {
                     lastProductVersion = productVersion;
                 }
             }
-        });
-
-        modulePage.push([moduleName, lastProductVersion]);
-    })
-
-    eleventyConfig.addCollection('modules', function (collection) {
-        return modulePage;
-    });
-
-    /*
-        structure:
-        [moduleName, productVersion, lastApiVersion]
-    */
-    let productVersionPage = [];
-    modulesStructured.forEach(({ moduleName, productVersions }) => {
-        productVersions.forEach(({ productVersion, apiVersions }) => {
-            let lastApiVersion;
-            apiVersions.forEach(({ apiVersion }) => {
+            apiVersions.forEach(({ apiVersion, file }) => {
                 if (lastApiVersion == null) {
                     lastApiVersion = apiVersion;
                 } else {
@@ -88,35 +83,29 @@ module.exports = function (eleventyConfig) {
                         lastApiVersion = apiVersion;
                     }
                 }
+                apiVersionPage.push([moduleName, productVersion, apiVersion, file]);
             });
             productVersionPage.push([moduleName, productVersion, lastApiVersion]);
+            lastApiVersion = null;
         });
+
+        modulePage.push([moduleName, lastProductVersion]);
+        lastProductVersion = null;
     });
 
+    eleventyConfig.addCollection('modules', function (collection) {
+        return modulePage;
+    });
     eleventyConfig.addCollection('productVersions', function (collection) {
         return productVersionPage;
     });
-
-    /*
-        structure:
-        [moduleName, productVersion, apiVersion, file]
-    */
-    let apiVersionPage = [];
-    modulesStructured.forEach(({ moduleName, productVersions }) => {
-        productVersions.forEach(({ productVersion, apiVersions }) => {
-            apiVersions.forEach(({ apiVersion, file }) => {
-                apiVersionPage.push([moduleName, productVersion, apiVersion, file]);
-            });
-        });
-    });
-
     eleventyConfig.addCollection('apiVersions', function (collection) {
         return apiVersionPage
     });
 
+
     let nunjucksEnvironment = new Nunjucks.Environment(
         new Nunjucks.FileSystemLoader("_includes")
     );
-
     eleventyConfig.setLibrary("njk", nunjucksEnvironment);
 }

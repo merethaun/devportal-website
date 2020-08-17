@@ -24,7 +24,7 @@ function watchFiles() {
   gulp.watch("./style/**/*.styl", { interval: 750 }, gulp.series(css));
 }
 
-const defaultTask = css;
+const defaultTask = watchFiles;
 
   exports.css = css;
   exports.watch = watch;

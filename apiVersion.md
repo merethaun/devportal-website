@@ -4,13 +4,15 @@ pageTitle: Brandmaker Dev Portal
 pagination:
     data: collections.apiVersions
     size: 1
-    alias: apiVersion
+    alias: apiVers
     addAllPagesToCollections: true
-permalink: "api/{{ apiVersion[0] }}/{{ apiVersion[1] }}/{{ apiVersion[2] }}/index.html"
+permalink: "api/{{ apiVers[0] }}/{{ apiVers[1] }}/{{ apiVers[2] }}/index.html"
 eleventyComputed:
     eleventyNavigation:
-        parent: "{{ apiVersion[0] }}/{{ apiVersion[1] }}"
-        key: "{{ apiVersion[2] }}"
-    module: "{{ apiVersion[0] }}"
-    swaggerFile: "{{ apiVersion[3] }}"
+        parent: "{{ apiVers[0] }}/{{ apiVers[1] }}"
+        key: "{{ apiVers[2] }}"
+    module: "{{ apiVers[0] }}"
+    productVersion: "{{ apiVers[1] }}"
+    apiVersion: "{{ apiVers[2] }}"
+    swaggerFile: "{{ apiVers[3] }}"
 ---

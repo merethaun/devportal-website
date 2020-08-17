@@ -43,5 +43,15 @@
                 }
             </script>
         </section>
+        <script>
+           // Check browser support
+            if (typeof(Storage) !== "undefined") {
+              // Store
+              window.localStorage.setItem("{{ module }}_used_productVersion", "{{ productVersion }}");
+              window.localStorage.setItem("{{ module }}_{{ productVersion }}_used_apiVersion", "{{ apiVersion }}");
+            } else {
+              console.log("Your browser does not support Web Storage");
+            } 
+        </script>
     </body>
 </html>

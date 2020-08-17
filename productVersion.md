@@ -1,5 +1,5 @@
 ---
-layout: pages/module.njk
+layout: pages/productVersion.njk
 pageTitle: Brandmaker Dev Portal
 pagination:
     data: collections.productVersions
@@ -8,7 +8,7 @@ pagination:
     addAllPagesToCollections: true
 permalink: "api/{{ productVersion[0] }}/{{ productVersion[1] }}/"
 eleventyComputed:
-    destination: "/api/{{ productVersion[0] }}/{{ productVersion[1] }}/{{ productVersion[2] }}"
+    destination: "{{ productVersion[2] }}"
     eleventyNavigation:
         parent: "{{ productVersion[0] }}"
         key: "{{ productVersion[0] }}/{{ productVersion[1] }}"

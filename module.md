@@ -8,8 +8,8 @@ pagination:
     addAllPagesToCollections: true
 permalink: "api/{{ module[0] }}/"
 eleventyComputed:
-    destination: "/api/{{ module[0] }}/{{ module[1] }}/"
+    destination: "{{ module[1] }}/"
     eleventyNavigation:
-        parent: api
+        parent: API
         key: "{{ module[0] }}"
 ---
