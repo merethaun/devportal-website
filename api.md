@@ -1,5 +1,5 @@
 ---
-layout: pages/home.njk
+layout: pages/api.njk
 bodyClass: inner
 pageTitle: Brandmaker Dev Portal
 eleventyNavigation:
