@@ -12,4 +12,5 @@ eleventyComputed:
     eleventyNavigation:
         parent: API
         key: "{{ module[0] }}"
+    module: "{{ module[0] }}"
 ---

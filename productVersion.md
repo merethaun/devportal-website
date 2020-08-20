@@ -13,4 +13,6 @@ eleventyComputed:
         parent: "{{ productVersion[0] }}"
         key: "{{ productVersion[0] }}/{{ productVersion[1] }}"
         title: "{{ productVersion[1] }}"
+    module: "{{ productVersion[0] }}"
+    productVersion: "{{ productVersion[1] }}"
 ---
