@@ -16,7 +16,12 @@
             </li>
         {%- endmacro %}
         <ul class="mainnav__list__main">
+            <!--- eleventy navigation -->
             {%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
+            <!--- manually included link to GitHub -->
+            <li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="https://github.com/brandmaker" target="_blank">GitHub</a>
+            </li>
         </ul>
     </nav>
 </header>
