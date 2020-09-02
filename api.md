@@ -1,10 +1,7 @@
 ---
-layout: pages/home.njk
+layout: pages/api.njk
 bodyClass: inner
 pageTitle: Brandmaker Dev Portal
 eleventyNavigation:
-  key: API
+    key: API
 ---
-# API overview follows
-
-This is a paragraph of text.

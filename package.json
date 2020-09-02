@@ -1,12 +1,13 @@
 {
-  "name": "devportal-site",
+  "name": "11ty-devportal",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "styles": "gulp",
-    "dev": "npx @11ty/eleventy --serve"
+    "build": "npx @11ty/eleventy",
+    "dev": "npx @11ty/eleventy --serve",
+    "styles": "gulp"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +23,7 @@
     "gulp-stylus": "^2.7.0",
     "gulp-watch": "^5.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fast-glob": "^3.2.4"
+  }
 }
