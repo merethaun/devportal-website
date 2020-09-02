@@ -2,9 +2,8 @@
 layout: pages/home.njk
 bodyClass: home
 pageTitle: Brandmaker Dev Portal
-claim: Unleashing your <a href="api">API</a> Superpowers!
-subclaim: Equipping 20 of the world’s leading banks, 20 of the world’s leading manufacturers, plus many of the top auto makers and life sciences companies, we have seen a lot of enterprise marketing operations.
+claim: Discover our <a href="api">API</a> to unleash your Marketing Superpowers!
+subclaim: A farewell to isolated solutions – With our open APIs, you can easily and flexibly integrate the BrandMaker solution into your Marketing Stack and design the functionality individually according to your needs.
 ctaLink: /api
 ctaLinkText: Discover our API
-ctaDescription: Open APIs enable our customers to create their own solutions on top of our powerful MRM.
 ---

@@ -7,18 +7,17 @@ a
 
 
 .hero
-    height 100vh
+    // height calc(100vh - 100px)
     width 100%
     background rgba(14,19,60,1)
     color white
+    display flex
+    align-items center
     &--api, .inner &
+        display block
         height auto
-        .hero__p
-            margin-bottom 0
-        .hero__text
-            margin-bottom 1rem
     &__header 
-        max-width 1400px
+        // max-width 1400px
         margin 0 auto
         padding 0 1rem
         position relative
@@ -37,11 +36,9 @@ a
 
     &__slogan 
         text-align center
-        max-width 1200px
         margin 0 auto
         display flex
         align-items center
-        height 100vh
         justify-content center
         &--api, .inner & 
             height auto
@@ -52,13 +49,15 @@ a
         .api &
             display flex
             align-items flex-end
-            margin-top 100px
+            // margin-top 100px
             text-align left
             width 100%
+            margin-bottom 0
 
     &__headline 
         font-size 7rem
         margin 6rem 0 2rem
+        padding 0 2rem
         .api &
             margin 0
             padding 0 2rem 0 0
@@ -66,6 +65,8 @@ a
             text-align left
             flex 1 1 30%
             line-height 1
+        .inner &
+            font-size 5rem
         a 
             color white
             text-decoration-color #F95B02
@@ -74,7 +75,7 @@ a
         font-size 1.5rem
         opacity .75
         max-width 1000px
-        margin 0 auto 2rem
+        margin 0 auto
         flex 1 1 70%
         &--strong 
             font-weight 600
@@ -82,5 +83,47 @@ a
         .api &
             margin 0
             padding  0 0 0.25rem 1rem
-    .cta 
-        margin-top 3rem
+.cta 
+    margin-top 3rem
+
+
+.teaser
+    padding 2rem 0
+    color #252e3d
+    &__wrapper
+        display flex
+        align-items stretch
+        max-width 1140px
+        margin 0 auto
+    &__item 
+        list-style none
+        padding 4rem 0
+        width 100%
+        &:nth-child(even)
+            background #f4f8f9
+            .teaser__wrapper
+                flex-direction: row-reverse
+            .teaser__content
+                padding 1rem 1rem 1rem 10%
+    &__content
+        flex 1 1 auto
+        padding 1rem 10% 1rem 1rem
+        &text
+            opacity .7
+            line-height 1.5
+            font-size 1.5rem
+            color #606568
+    &__title
+        font-size 5rem
+        margin 0
+        line-height 4.5rem
+        margin-bottom 1rem
+    &__icon
+        flex 0 0 40%
+        .inner &
+            flex 0 0 20%
+        padding 1rem
+        align-items center
+        display flex
+        img
+            width 100%
