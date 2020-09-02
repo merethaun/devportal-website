@@ -13,13 +13,32 @@
                 <div class="hero__text">
                     <h1 class="hero__headline">{{ claim | safe }}</h1>
                     <p class="hero__p">{{ subclaim }}</p>
-                    <p class="hero__p hero__p--strong">{{ ctaDescription }}</p>
+                    <!-- <p class="hero__p hero__p--strong">{{ ctaDescription }}</p> -->
                     {% if ctaLinkText %}
                         <a class="cta" href="{{ ctaLink }}">{{ ctaLinkText }}</a>
                     {% endif %}
                 </div>
             </section>
         </section>
-        {{ content | safe }}
+        <ul class="teaser">
+        {% for teaser in collections.teaser -%}
+        <li class="teaser__item{% if teaser.icon %} teaser__item--hasicon{% endif %}">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">{{ teaser.data.title }}</h3>
+                    <div class="teaser__contenttext">
+                        {{ teaser.data.shorttext | safe }}
+                    </div>
+                    <a class="cta cta--teaser" href="/api/{{ teaser.data.destination }}">Discover {{ teaser.data.title }} API</a>
+                </div>
+                {% if teaser.data.icon %}
+                    <div class="teaser__icon">
+                        <img src="/assets/{{ teaser.data.icon }}.svg" alt="Logo {{ teaser.data.title }}">
+                    </div>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor -%}
+    </ul>
     </body>
 </html>
