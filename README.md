@@ -3,6 +3,12 @@
 Our static web pages that build the environment for the adapted [Swagger UI](https://github.com/brandmaker/swagger-ui). \
 This static site generator uses 11ty. 
 
+## Automatic Build
+Whenever something is pushed to the master branch (or pull request to master), the _side folder will be generated and pushed to the branch 'published-pages' and the 'brandmaker/brandmaker.github.io' repository. \
+GitHub will do it automatically with Actions. \
+In order to push to another repo a secret token (API_TOKEN_GITHUB) has to be added. (https://github.com/marketplace/actions/push-directory-to-another-repository)
+
+
 ## Quickstart
 Clone the repository and run `npm install`
 
