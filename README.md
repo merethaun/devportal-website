@@ -3,6 +3,11 @@
 Our static web pages that build the environment for the adapted [Swagger UI](https://github.com/brandmaker/swagger-ui). \
 This static site generator uses 11ty. 
 
+## Automatic Build
+Whenever something is pushed to the repository, the _side folder will be generated and pushed to the branch 'published-pages'. \
+GitHub will do it automatically with Actions.
+
+
 ## Quickstart
 Clone the repository and run `npm install`
 

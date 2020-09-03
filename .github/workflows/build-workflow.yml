@@ -1,0 +1,20 @@
+name: Eleventy Build
+on: [push]
+jobs:
+  install_build_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+      - name: Publish on published-pages
+        uses: peaceiris/actions-gh-pages@v1.1.0
+        env:
+          PUBLISH_DIR: _site 
+          PUBLISH_BRANCH: published-pages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
