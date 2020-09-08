@@ -11,12 +11,21 @@
         <section class="hero">
             <section class="hero__slogan">
                 <div class="hero__text">
-                    <h1 class="hero__headline">{{ claim | safe }}</h1>
-                    <p class="hero__p">{{ subclaim }}</p>
-                    <!-- <p class="hero__p hero__p--strong">{{ ctaDescription }}</p> -->
-                    {% if ctaLinkText %}
-                        <a class="cta" href="{{ ctaLink }}">{{ ctaLinkText }}</a>
-                    {% endif %}
+                    <ul class="teaser">
+                        <li class="teaser__item{% if teaser.icon %} teaser__item--hasicon{% endif %}">
+                            <div class="teaser__wrapper">
+                                <div class="teaser__content">
+                                    <h1 class="teaser__title">{{ claim | safe }}</h3>
+                                    <div class="teaser__contenttext">
+                                        {{ subclaim }}
+                                    </div>
+                                </div>
+                                <div class="teaser__icon">
+                                    <img src="/assets/Zahnrad.svg" alt="Illustration API">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </section>
         </section>
