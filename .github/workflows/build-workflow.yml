@@ -1,13 +1,9 @@
 name: Eleventy Build
-<<<<<<< HEAD
-on: [push]
-=======
 on: 
   push: 
     branches: [ master ]
   pull_request:
     branches: [ master ]
->>>>>>> 623b810982a45a30a49cbfb77ce8a6d2a366515e
 jobs:
   install_build_deploy:
     runs-on: ubuntu-latest
@@ -20,20 +16,14 @@ jobs:
         run: |
           npm install
           npm run build
-<<<<<<< HEAD
-=======
       - shell: bash
         run: |
           echo developers.brandmaker.com > ./_site/CNAME
->>>>>>> 623b810982a45a30a49cbfb77ce8a6d2a366515e
       - name: Publish on published-pages
         uses: peaceiris/actions-gh-pages@v1.1.0
         env:
           PUBLISH_DIR: _site 
           PUBLISH_BRANCH: published-pages
-<<<<<<< HEAD
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-=======
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
@@ -45,4 +35,3 @@ jobs:
           destination-repository-name: 'brandmaker.github.io'
           user-email: meret.unbehaun@brandmaker.com
         
->>>>>>> 623b810982a45a30a49cbfb77ce8a6d2a366515e
