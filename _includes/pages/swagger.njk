@@ -16,7 +16,37 @@
                         <h1 class="hero__headline">{{ module }}</h1>
                     </div>
                 </section>
+                {% set navPages = collections.all | eleventyNavigation("API") %}
+                <div class="nav_modules">
+                    <!--- eleventy navigation -->
+                    {%- for moduleE in navPages %}
+                    {%- if moduleE.title == module %}
+                        <select onchange="javascipt:handleSelect(this)">
+                            {%- for pVersion in moduleE.children %}
+                            <optgroup label="{{ pVersion.title }}">
+                                {%- for apiV in pVersion.children %}
+                                {%- if apiV.title == apiVersion %}
+                                <option value="../../../{{ module }}/{{ pVersion.title }}/{{ apiV.title }}" selected>
+                                    {{ apiV.title }}
+                                </option>
+                                {% else %}
+                                <option value="../../../{{ module }}/{{ pVersion.title }}/{{ apiV.title }}">
+                                    {{ apiV.title }}
+                                </option>
+                                {% endif %}
+                                {% endfor-%}
+                            </optgroup>
+                            {% endfor-%}
+                        </select>
+                    {%- endif %}
+                    {%- endfor -%}
+                </div>
             </header>
+            <script type="text/javascript">
+                function handleSelect(elm) {
+                    window.location = elm.value;
+                }
+            </script>
             <div id="swagger-ui"></div>
             <script src="../../../../swagger/swagger-ui-bundle.js"> </script>
             <script src="../../../../swagger/swagger-ui-standalone-preset.js"> </script>

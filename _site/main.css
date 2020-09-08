@@ -401,6 +401,23 @@ a {
   visibility: visible;
   opacity: 1;
 }
+.nav_modules {
+  margin: 0.5rem 1rem;
+}
+.nav_modules select {
+  background: #0e133c;
+  color: #fff;
+  font-size: 1.125rem;
+  padding: 0.25rem 1rem;
+}
+.nav_modules select optgroup {
+  font-size: 1.25rem;
+  font-weight: 150;
+}
+.nav_modules select optgroup option {
+  font-family: "Calibri", sans-serif;
+  font-size: 1.125rem;
+}
 .topbar {
   position: -webkit-sticky;
   position: sticky;
