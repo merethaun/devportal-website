@@ -21,7 +21,8 @@
                     <!--- eleventy navigation -->
                     {%- for moduleE in navPages %}
                     {%- if moduleE.title == module %}
-                        <select onchange="javascipt:handleSelect(this)">
+                    <label for="navselect">Selected Version:</label> 
+                        <select onchange="javascipt:handleSelect(this)" id="navselect">
                             {%- for pVersion in moduleE.children %}
                             <optgroup label="{{ pVersion.title }}">
                                 {%- for apiV in pVersion.children %}
