@@ -10,7 +10,10 @@
                 <a class="mainnav__listitemlink" href="{{ entry.url | url }}">{{ entry.title }}</a>
                 {%- if entry.children.length -%}
                     <ul class="mainnav__list">
-                        {%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
+                        <!--- only first layer -->
+                        {%- for child in entry.children %}
+                            <a class="mainnav__listitemlink" href="{{ child.url | url }}">{{ child.title }}</a>
+                        {% endfor -%}
                     </ul>
                 {%- endif -%}
             </li>
