@@ -18,7 +18,7 @@ jobs:
           npm run build
       - shell: bash
         run: |
-        echo developers.brandmaker.com > ./_site/CNAME
+          echo developers.brandmaker.com > ./_site/CNAME
       - name: Publish on published-pages
         uses: peaceiris/actions-gh-pages@v1.1.0
         env:
