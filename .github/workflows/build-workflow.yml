@@ -16,15 +16,15 @@ jobs:
         run: |
           npm install
           npm run build
-      - shell: bash
-        run: |
-          echo developers.brandmaker.com > ./_site/CNAME
       - name: Publish on published-pages
         uses: peaceiris/actions-gh-pages@v1.1.0
         env:
           PUBLISH_DIR: _site 
           PUBLISH_BRANCH: published-pages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #- shell: bash
+      #  run: |
+      #    echo developers.brandmaker.com > ./_site/CNAME
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
         env:
