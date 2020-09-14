@@ -418,21 +418,28 @@ a {
   opacity: 1;
 }
 .nav_modules {
-  margin: 1rem 0rem;
+  margin: 1rem;
+}
+.nav_modules label {
+  margin-right: 0.5rem;
 }
 .nav_modules select {
   background: #0e133c;
   color: #fff;
   font-size: 1.125rem;
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 0.5rem;
+  outline: none;
+  display: inline-block;
 }
 .nav_modules select optgroup {
-  font-size: 1.25rem;
+  background-color: #104;
+  font-size: 1.125rem;
   font-weight: 150;
 }
 .nav_modules select optgroup option {
+  background: #104;
   font-family: "Calibri", sans-serif;
-  font-size: 1.125rem;
+  font-size: 1rem;
 }
 .topbar {
   position: -webkit-sticky;
