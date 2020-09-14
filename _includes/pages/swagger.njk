@@ -20,7 +20,7 @@
                 <div class="nav_modules">
                     <!--- eleventy navigation -->
                     {%- for moduleE in navPages %}
-                    {%- if moduleE.title == module %}
+                    {%- if moduleE.key == module %}
                     <label for="navselect">Selected Version:</label> 
                         <select onchange="javascipt:handleSelect(this)" id="navselect">
                             {%- for pVersion in moduleE.children %}
