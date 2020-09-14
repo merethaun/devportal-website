@@ -1,8 +1,13 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const fg = require('fast-glob');
+const fs = require('fs');
 let Nunjucks = require("nunjucks");
 
-const modulesUnstuctured = fg.sync('api/**', { onlyFiles: false, deep: 4, objectMode: true });
+//const modulesUnstuctured = fg.sync('api/**', { onlyFiles: false, deep: 4, objectMode: true });
+const moduleFiles = fg.sync('api/**', { onlyFiles: true, deep: 4, objectMode: true });
+const moduleDicts = fg.sync('api/**', { onlyDirectories: true, deep: 4, objectMode: true });
+
+//const name = fg.sync('name.json', {objectMode: true});
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("main.css");
@@ -12,42 +17,54 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
 
+    
     /* 
-        structure:
         {moduleName, productVersions: {
             productVersion, apiVersions: {
-                apiVersion, file, path // swagger file
+                apiVersion 
             }
         }}
     */
-    let modulesStructured = new Map();
-    modulesUnstuctured.forEach(({ name, path }) => {
-        const category = path.split("/").length - 1; // if 1: module, if 2: product-version, if 3: api-version, 4: swagger file
+    var modulesStructured = new Map();
+    moduleDicts.forEach(({ name, path }) => {
+        const category = path.split("/").length - 1; // if 1: module, if 2: product-version
 
         if (category == 1) {
             modulesStructured.set(name, { moduleName: name, productVersions: new Map() });
             return;
         }
 
-        const moduleName = path.split("/")[1]
+        const moduleName = path.split("/")[1];
 
         if (category == 2) {
             modulesStructured.get(moduleName).productVersions.set(name, { productVersion: name, apiVersions: new Map() });
             return;
         }
+    });
 
-        const productVersion = path.split("/")[2]
-        const apiVersion = path.split("/")[3]
+    let displayNames = new Map();
+    moduleFiles.forEach(({name, path}) => {
+        const type = path.split("/").length - 1; // if 2: module.json (display name), if 4: swagger.json
 
-        if (category == 4) {
-            modulesStructured.get(moduleName).productVersions.get(productVersion).apiVersions.set(apiVersion, { apiVersion: apiVersion, file: name, path: path });
+        const module = path.split("/")[1];
+        if (type == 2) {
+            var obj = JSON.parse(fs.readFileSync(path, 'utf8'));
+            displayNames.set(module, obj.name);
+
+        }
+        
+        const productVersion = path.split("/")[2];
+        const apiVersion = path.split("/")[3];
+
+        if (type == 4) {
+            modulesStructured.get(module).productVersions.get(productVersion).apiVersions.set(apiVersion, { apiVersion: apiVersion, file: name, path: path });
             return;
         }
     });
 
     /*
         structured:
-        [moduleName, lastProductVersion]
+        [moduleName, displayName, lastProductVersion]
     */
     let modulePage = [];
     /*
@@ -57,7 +74,7 @@ module.exports = function (eleventyConfig) {
    let productVersionPage = [];
    /*
         structure:
-        [moduleName, productVersion, apiVersion, file]
+        [moduleName, displayModule, productVersion, apiVersion, file]
     */
     let apiVersionPage = [];
 
@@ -83,13 +100,13 @@ module.exports = function (eleventyConfig) {
                         lastApiVersion = apiVersion;
                     }
                 }
-                apiVersionPage.push([moduleName, productVersion, apiVersion, file]);
+                apiVersionPage.push([moduleName, displayNames.get(moduleName), productVersion, apiVersion, file]);
             });
             productVersionPage.push([moduleName, productVersion, lastApiVersion]);
             lastApiVersion = null;
         });
 
-        modulePage.push([moduleName, lastProductVersion]);
+        modulePage.push([moduleName, displayNames.get(moduleName), lastProductVersion]);
         lastProductVersion = null;
     });
 
@@ -108,4 +125,5 @@ module.exports = function (eleventyConfig) {
         new Nunjucks.FileSystemLoader("_includes")
     );
     eleventyConfig.setLibrary("njk", nunjucksEnvironment);
+    
 }

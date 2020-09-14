@@ -4,9 +4,8 @@ Our static web pages that build the environment for the adapted [Swagger UI](htt
 This static site generator uses 11ty. 
 
 ## Automatic Build
-Whenever something is pushed to the master branch (or pull request to master), the _side folder will be generated and pushed to the branch 'published-pages' and the 'brandmaker/brandmaker.github.io' repository. \
+Whenever something is pushed to the master branch (or pull request to master), the _side folder will be generated and pushed to the branch 'published-pages'. This branch is the soucce for GitHub pages (https://developers.brandmaker.com/) \
 GitHub will do it automatically with Actions. \
-In order to push to another repo a secret token (API_TOKEN_GITHUB) has to be added. (https://github.com/marketplace/actions/push-directory-to-another-repository)
 
 
 ## Quickstart
@@ -41,6 +40,13 @@ The swagger.json files should be added into the "api" folder in the following st
 
 Example: _api/MediaPool/6.8/6.8.1.0/mediapool-api-6.8.1.0.json_ \
 It's important, that every api version folder contains only one file.
+
+Every module needs a **module.json** file (api/_\<module name>_/module.json) with a name, which will be displayed in the navigation and as the title:
+```
+{
+    "name": "<module name>"
+}
+```
 
 This will generate one page per module, one per product version and one per api version. (with module.md, product.md, swagger.md) \
 Thereby the module page will redirect to the last published product version, and the product version page to the last published api version page. If the user already checked out a specific product/api version, he will be redirected to the according page (localStorage)
