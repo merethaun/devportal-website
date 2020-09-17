@@ -2,3 +2,6 @@ node_modules/
 _site/
 # macOS Files
 .DS_Store
+
+*/*/productVersions.json
+*/*/*/apiVersions.json

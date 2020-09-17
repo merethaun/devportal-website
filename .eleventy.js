@@ -11,7 +11,6 @@ const moduleDicts = fg.sync('api/**', { onlyDirectories: true, deep: 4, objectMo
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("main.css");
-    eleventyConfig.addPassthroughCopy("api");
     eleventyConfig.addPassthroughCopy("swagger");
 
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
@@ -47,18 +46,19 @@ module.exports = function (eleventyConfig) {
     moduleFiles.forEach(({name, path}) => {
         const type = path.split("/").length - 1; // if 2: module.json (display name), if 4: swagger.json
 
-        const module = path.split("/")[1];
+        const moduleName = path.split("/")[1];
         if (type == 2) {
             var obj = JSON.parse(fs.readFileSync(path, 'utf8'));
-            displayNames.set(module, obj.name);
-            info.set(module, obj.info);
+            displayNames.set(moduleName, obj.name);
+            info.set(moduleName, obj.info);
+            console.log(obj.info, info)
         }
         
         const productVersion = path.split("/")[2];
         const apiVersion = path.split("/")[3];
 
         if (type == 4) {
-            modulesStructured.get(module).productVersions.get(productVersion).apiVersions.set(apiVersion, { apiVersion: apiVersion, file: name, path: path });
+            modulesStructured.get(moduleName).productVersions.get(productVersion).apiVersions.set(apiVersion, { apiVersion: apiVersion, file: name, path: path });
             return;
         }
     });
@@ -83,7 +83,10 @@ module.exports = function (eleventyConfig) {
     var lastApiVersion;
 
     modulesStructured.forEach(({ moduleName, productVersions }) => {
+        var productVersionJson = "{ \"productVersions\": [";
         productVersions.forEach(({ productVersion, apiVersions }) => {
+            var apiVersionJson = "{ \"apiVersions\": [";
+            productVersionJson = productVersionJson + "\"" + productVersion + "\",";
             if (lastProductVersion == null) {
                 lastProductVersion = productVersion;
             } else {
@@ -93,6 +96,7 @@ module.exports = function (eleventyConfig) {
                 }
             }
             apiVersions.forEach(({ apiVersion, file }) => {
+                apiVersionJson = apiVersionJson + "\"" + apiVersion + "\",";
                 if (lastApiVersion == null) {
                     lastApiVersion = apiVersion;
                 } else {
@@ -105,8 +109,19 @@ module.exports = function (eleventyConfig) {
             });
             productVersionPage.push([moduleName, productVersion, lastApiVersion]);
             lastApiVersion = null;
+            apiVersionJson = apiVersionJson.slice(0, -1);
+            apiVersionJson = apiVersionJson + "]}";
+            fs.writeFile("api/" + moduleName + "/" + productVersion + "/apiVersions.json", apiVersionJson, function(err, result) {
+                if(err) console.log('error', err);
+            });
+        });
+        productVersionJson = productVersionJson.slice(0, -1);
+        productVersionJson = productVersionJson + "]}";
+        fs.writeFile("api/" + moduleName + "/productVersions.json", productVersionJson, function(err, result) {
+            if(err) console.log('error', err);
         });
         modulePage.push([moduleName, displayNames.get(moduleName), lastProductVersion, info.get(moduleName) || ""]);
+        console.log([moduleName, displayNames.get(moduleName), lastProductVersion, info.get(moduleName) || ""])
     });
 
     eleventyConfig.addCollection('modules', function (collection) {
@@ -118,6 +133,13 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addCollection('apiVersions', function (collection) {
         return apiVersionPage
     });
+
+
+
+
+    
+    eleventyConfig.addPassthroughCopy("api");
+
 
 
     let nunjucksEnvironment = new Nunjucks.Environment(

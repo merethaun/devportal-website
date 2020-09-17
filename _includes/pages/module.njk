@@ -3,37 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% set navPages = collections.all | eleventyNavigation("API") %}
-  {% set lastUsedProductVersion = "getLastUsedProductVersion()" %}
-  {% set found = "false" %}
-    {%- for moduleE in navPages %}
-      {%- if moduleE.key == module %}
-        {%- for pVersion in moduleE.children %}
-          {%- if (pVersion.key == lastUsedProductVersion) %}
-            {% set found = "true" %}
-            <script>
-              window.location.href = window.location.href + "{{ lastUsedProductVersion }}";
-            </script>
-          {% endif -%}
-        {% endfor-%}
-      {%- endif %}
-    {%- endfor -%}
-    {% if (found == "false") %}
-      <script>
-        window.location.href = window.location.href + "{{ destination }}";
-      </script>
-    {% endif %}
-
-    <script>
-      function getLastUsedProductVersion() {
-        if (typeof(Storage) !== "undefined") {
-          if (localStorage.getItem("{{ module }}_used_productVersion")) {
-            return localStorage.getItem("{{ module }}_used_productVersion");  
-          }
-        }
-        return ("{{ destination }}");
-      }
+  <script>
+    // Check browser support
+    var lastUsedProductVersion;
+    if ((typeof(Storage) !== "undefined") && (localStorage.getItem("{{ module }}_used_productVersion"))) {
+      lastUsedProductVersion =  localStorage.getItem("{{ module }}_used_productVersion");  
+    } else {
+      lastUsedProductVersion = "{{ destination }}"
+    }
     
+    var request = new XMLHttpRequest();
+    request.open("GET","./productVersions.json", false);
+    request.send(null);
+    var jsonData = JSON.parse(request.responseText);
+    lastUsedProductVersion = jsonData.productVersions.includes(lastUsedProductVersion) ? lastUsedProductVersion : "{{ destination }}"
+    window.location.href = window.location.href + lastUsedProductVersion;
   </script>
 </head>
 <body>
