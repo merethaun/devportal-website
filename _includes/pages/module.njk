@@ -27,7 +27,7 @@
     <script>
       function getLastUsedProductVersion() {
         if (typeof(Storage) !== "undefined") {
-          if (localStorage.getItem("{{ module }}_used_productVersion")) { 
+          if (localStorage.getItem("{{ module }}_used_productVersion")) {
             return localStorage.getItem("{{ module }}_used_productVersion");  
           }
         }
