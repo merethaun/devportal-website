@@ -21,3 +21,50 @@
   <!-- Redirect page -->
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% set navPages = collections.all | eleventyNavigation("API") %}
+  {% set lastUsedApiVersion = "getLastUsedApiVersion()" %}
+  {% set found = "false" %}
+    {%- for moduleE in navPages %}
+      {%- if moduleE.key == module %}
+        {%- for pVersion in moduleE.children %}
+          {%- if (pVersion.key == productVersion) %}
+            {%- for apiV in pVersion.children %}
+              {%- if (apiV.key == lastUsedApiVersion) %}
+                {% set found = "true" %}
+                <script>
+                  window.location.href = window.location.href + "{{ lastUsedApiVersion }}";
+                </script>
+              {% endif -%}
+            {% endfor -%}
+          {% endif -%}
+        {% endfor-%}
+      {%- endif %}
+    {%- endfor -%}
+    {% if (found == "false") %}
+      <script>
+        window.location.href = window.location.href + "{{ destination }}";
+      </script>
+    {% endif %}
+
+    <script>
+      function getLastUsedApiVersion() {
+        if (typeof(Storage) !== "undefined") {
+          if (localStorage.getItem("{{ module }}_{{ productVersion }}_used_apiVersion")) { 
+            return localStorage.getItem("{{ module }}_{{ productVersion }}_used_apiVersion");  
+          }
+        }
+        return ("{{ destination }}");
+      }
+    
+  </script>
+</head>
+<body>
+  
+</body>
+
+</html>

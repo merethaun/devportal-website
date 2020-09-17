@@ -3,22 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    // Check browser support
-    if (typeof(Storage) !== "undefined") {
-      // Store
-      if (localStorage.getItem("{{ module }}_used_productVersion")) {      
-        window.location.href = window.location.href + localStorage.getItem("{{ module }}_used_productVersion");
-      } else {
+  {% set navPages = collections.all | eleventyNavigation("API") %}
+  {% set lastUsedProductVersion = "getLastUsedProductVersion()" %}
+  {% set found = "false" %}
+    {%- for moduleE in navPages %}
+      {%- if moduleE.key == module %}
+        {%- for pVersion in moduleE.children %}
+          {%- if (pVersion.key == lastUsedProductVersion) %}
+            {% set found = "true" %}
+            <script>
+              window.location.href = window.location.href + "{{ lastUsedProductVersion }}";
+            </script>
+          {% endif -%}
+        {% endfor-%}
+      {%- endif %}
+    {%- endfor -%}
+    {% if (found == "false") %}
+      <script>
         window.location.href = window.location.href + "{{ destination }}";
+      </script>
+    {% endif %}
+
+    <script>
+      function getLastUsedProductVersion() {
+        if (typeof(Storage) !== "undefined") {
+          if (localStorage.getItem("{{ module }}_used_productVersion")) { 
+            return localStorage.getItem("{{ module }}_used_productVersion");  
+          }
+        }
+        return ("{{ destination }}");
       }
-      
-    } else {
-      window.location.href = window.location.href + "{{ destination }}";
-    } 
+    
   </script>
 </head>
 <body>
-  <!-- Redirect page -->
+  
 </body>
+
 </html>
