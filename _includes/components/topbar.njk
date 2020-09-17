@@ -12,7 +12,12 @@
                     <ul class="mainnav__list">
                         <!--- only first layer -->
                         {%- for child in entry.children %}
-                            <a class="mainnav__listitemlink" href="{{ child.url | url }}">{{ child.title }}</a>
+                            <a class="mainnav__listitemlink" href="{{ child.url | url }}">
+                                <h1 class="title">{{child.title}}</h1>
+                                {%- if (child.excerpt != "") %}
+                                    <h1 class="info">{{ child.excerpt }}</h1>
+                                {% endif -%}
+                            </a>
                         {% endfor -%}
                     </ul>
                 {%- endif -%}

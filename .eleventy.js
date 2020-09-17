@@ -43,6 +43,7 @@ module.exports = function (eleventyConfig) {
     });
 
     let displayNames = new Map();
+    let info = new Map();
     moduleFiles.forEach(({name, path}) => {
         const type = path.split("/").length - 1; // if 2: module.json (display name), if 4: swagger.json
 
@@ -50,7 +51,7 @@ module.exports = function (eleventyConfig) {
         if (type == 2) {
             var obj = JSON.parse(fs.readFileSync(path, 'utf8'));
             displayNames.set(module, obj.name);
-
+            info.set(module, obj.info);
         }
         
         const productVersion = path.split("/")[2];
@@ -105,9 +106,7 @@ module.exports = function (eleventyConfig) {
             productVersionPage.push([moduleName, productVersion, lastApiVersion]);
             lastApiVersion = null;
         });
-
-        modulePage.push([moduleName, displayNames.get(moduleName), lastProductVersion]);
-        lastProductVersion = null;
+        modulePage.push([moduleName, displayNames.get(moduleName), lastProductVersion, info.get(moduleName) || ""]);
     });
 
     eleventyConfig.addCollection('modules', function (collection) {

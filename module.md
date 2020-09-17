@@ -13,5 +13,7 @@ eleventyComputed:
         parent: API
         key: "{{ module[0] }}"
         title: "{{ module[1] }}"
+        excerpt: "{{ module[3] }}"
     module: "{{ module[0] }}"
+    info: "{{ module[3] }}"
 ---

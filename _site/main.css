@@ -377,7 +377,7 @@ a {
   padding-top: 1rem;
   right: 0;
   top: 100px;
-  width: 200%;
+  width: 250%;
   text-align: left;
   opacity: 0;
   transition: opacity 0.3s ease-out;
@@ -404,6 +404,19 @@ a {
 }
 .mainnav__listitem ul .mainnav__listitemlink:hover {
   border-right: 4px solid #f95b02;
+}
+.mainnav__listitem ul .mainnav__listitemlink .title {
+  text-align: right;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.mainnav__listitem ul .mainnav__listitemlink .info {
+  font-weight: 400;
+  color: #93989b;
+  font-size: 1rem;
+  line-height: 1.4;
+  display: inline-block;
+  margin-top: 3px;
 }
 .mainnav__listitem:hover {
   z-index: 15;
