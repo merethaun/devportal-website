@@ -51,7 +51,7 @@ module.exports = function (eleventyConfig) {
             var obj = JSON.parse(fs.readFileSync(path, 'utf8'));
             displayNames.set(moduleName, obj.name);
             info.set(moduleName, obj.info);
-            console.log(obj.info, info)
+            //console.log(obj.info, info)
         }
         
         const productVersion = path.split("/")[2];
@@ -79,12 +79,12 @@ module.exports = function (eleventyConfig) {
     */
     let apiVersionPage = [];
 
-    var lastProductVersion;
-    var lastApiVersion;
 
     modulesStructured.forEach(({ moduleName, productVersions }) => {
+        var lastProductVersion;
         var productVersionJson = "{ \"productVersions\": [";
         productVersions.forEach(({ productVersion, apiVersions }) => {
+            var lastApiVersion;
             var apiVersionJson = "{ \"apiVersions\": [";
             productVersionJson = productVersionJson + "\"" + productVersion + "\",";
             if (lastProductVersion == null) {
@@ -121,7 +121,7 @@ module.exports = function (eleventyConfig) {
             if(err) console.log('error', err);
         });
         modulePage.push([moduleName, displayNames.get(moduleName), lastProductVersion, info.get(moduleName) || ""]);
-        console.log([moduleName, displayNames.get(moduleName), lastProductVersion, info.get(moduleName) || ""])
+        //console.log([moduleName, displayNames.get(moduleName), lastProductVersion, info.get(moduleName) || ""])
     });
 
     eleventyConfig.addCollection('modules', function (collection) {
