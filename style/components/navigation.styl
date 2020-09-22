@@ -2,7 +2,7 @@
     &__list
         list-style none
         align-items center
-        height 100px
+        height 75px
         margin 0
         padding 0
         &__main
@@ -56,7 +56,7 @@
                     position: relative
                     &link
                         color $grey500
-                        padding 18px 2.5rem 25px
+                        padding 1rem 2rem 1rem
                         line-height 1
                         display block
                         font-weight 400
@@ -64,18 +64,19 @@
                         border-left 0px solid transparent
                         &:hover
                             border-left 5px solid $orange
-
-                        .title
-                            text-align: right
+                            color $grey900
+                        &title
                             font-weight 700
-                            font-size: 1.5rem
-                        .info
-                            font-weight: 400;
-                            color: #93989b;
-                            font-size: 1rem;
-                            line-height: 1.4;
-                            display: inline-block;
-                            margin-top: 3px;
+                            font-size: 1.125rem
+
+                            &--sub
+                                font-weight: 400;
+                                color: rgb(147, 152, 155);
+                                font-size: .875rem;
+                                line-height: 1.4;
+                                display: inline-block;
+                                margin-top: 3px;
+                                display block
             &:hover
                 z-index 15
                 > .mainnav__listitemlink
@@ -85,3 +86,4 @@
                 ul
                     visibility visible
                     opacity 1
+

@@ -210,10 +210,12 @@ a {
 .hero__slogan--api,
 .inner .hero__slogan {
   height: auto;
-  margin: 0;
   max-width: 1200px;
   justify-content: flex-start;
   text-align: left;
+}
+.hero__slogan--api {
+  margin: 0;
 }
 .hero__text {
   margin: 0 auto 4rem;
@@ -223,8 +225,6 @@ a {
   margin-bottom: 0;
 }
 .api .hero__text {
-  display: flex;
-  align-items: flex-end;
   text-align: left;
   width: 100%;
   margin-bottom: 0;
@@ -236,11 +236,11 @@ a {
 }
 .api .hero__headline {
   margin: 0;
-  padding: 0 2rem 0 0;
+  padding: 0 1rem 0 0;
   font-size: 4rem;
   text-align: left;
-  flex: 1 1 30%;
   line-height: 1;
+  display: inline-block;
 }
 .inner .hero__headline {
   font-size: 5rem;
@@ -332,7 +332,7 @@ a {
 .mainnav__list {
   list-style: none;
   align-items: center;
-  height: 100px;
+  height: 75px;
   margin: 0;
   padding: 0;
 }
@@ -392,7 +392,7 @@ a {
 }
 .mainnav__listitem ul .mainnav__listitemlink {
   color: #646f79;
-  padding: 18px 2.5rem 25px;
+  padding: 1rem 2rem 1rem;
   line-height: 1;
   display: block;
   font-weight: 400;
@@ -401,19 +401,20 @@ a {
 }
 .mainnav__listitem ul .mainnav__listitemlink:hover {
   border-left: 5px solid #f95b02;
+  color: #0a0c25;
 }
-.mainnav__listitem ul .mainnav__listitemlink .title {
-  text-align: right;
+.mainnav__listitem ul .mainnav__listitemlinktitle {
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
 }
-.mainnav__listitem ul .mainnav__listitemlink .info {
+.mainnav__listitem ul .mainnav__listitemlinktitle--sub {
   font-weight: 400;
   color: #93989b;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.4;
   display: inline-block;
   margin-top: 3px;
+  display: block;
 }
 .mainnav__listitem:hover {
   z-index: 15;
@@ -427,18 +428,17 @@ a {
   visibility: visible;
   opacity: 1;
 }
+.nav__selectlabel {
+  display: none;
+}
 .nav_modules {
-  margin: 1rem;
+  margin: 1rem 0;
+  display: inline-block;
 }
 .nav_modules label {
   margin-right: 0.5rem;
 }
 .nav_modules select {
-  background: #0e133c;
-  color: #fff;
-  font-size: 1.125rem;
-  padding: 0.25rem 0.5rem;
-  outline: none;
   display: inline-block;
 }
 .nav_modules select optgroup {
@@ -450,6 +450,64 @@ a {
   background: #104;
   font-family: "Calibri", sans-serif;
   font-size: 1rem;
+}
+.select-css {
+  display: inline-block;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 2.5rem;
+  width: 140px;
+  max-width: 100%; /* useful when width is set to anything other than 100% */
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 0 1px rgba(0,0,0,0.04);
+  border-radius: 0.5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FB9D20%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat, repeat;
+/* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+  background-position: left 0.7em top 55%;
+/* icon size, then gradient */
+  background-size: 0.75em auto, 100%;
+}
+.select-css::-ms-expand {
+  display: none;
+}
+.select-css:hover {
+  border-color: #888;
+}
+.select-css:focus {
+  border-color: #aaa;
+/* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
+  box-shadow: 0 0 1px 3px rgba(59,153,252,0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #ddd;
+  outline: none;
+}
+.select-css option {
+  font-weight: normal;
+}
+*[dir="rtl"] .select-css,
+:root:lang(ar) .select-css,
+:root:lang(iw) .select-css {
+  background-position: left 0.7em top 50%;
+  padding: 0.6em 0.8em 0.5em 1.4em;
+}
+.select-css:disabled,
+.select-css[aria-disabled=true] {
+  color: graytext;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22FB9D20%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+}
+.select-css:disabled:hover,
+.select-css[aria-disabled=true] {
+  border-color: #aaa;
 }
 .topbar {
   position: -webkit-sticky;

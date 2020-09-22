@@ -3,10 +3,10 @@ title: Marketing Planner
 tags: ['teaser']
 icon: logo_marketingplanner
 destination: mediapool
-shorttext: <tbd...)> With BrandMaker Marketing Planner you gain full visibility and control over your financial planning, campaigns and performance measurement. Use BrandMaker as a comprehensive platform to orchestrate all your teamwork and activities.
+shorttext: With BrandMaker Marketing Planner, you gain full visibility and control over all campaigns, financial planning, and performance measurement. It thus provides a comprehensive platform for all stakeholders.  
 ---
-(tbd...) Media Pool provides a central place to store and manage digital assets in any format, for any device, and for any purpose. Diverse assets, such as files, videos, and images, can be imported, viewed, downloaded, shared as well as deleted by the user.  The management of assets also enables versioning, tagging and grouping as well as editing of asset properties. 
+With BrandMaker Marketing Planner, you gain full visibility and control over all campaigns, financial planning, and performance measurement. It thus provides a comprehensive platform for all stakeholders.  
 
-With the help of the integrated search function, both individual and preconfigured search queries can be carried out, which are additionally supported by AI-based image tagging. Digital rights give internal and external team members role-based access to your digital library. Additionally, version and license management ensure the use of only current and valid content. 
+Marketing planner enables the planning and budgeting of all marketing activities up to single tasks. Planned, targeted, committed, and actual budgets can be set using the desired granularity and currency. Additionally, all relevant information such as content, purchase orders, invoices, KPIs, attachments, and responsible persons, who are automatically informed, can be defined for each element. By integrating formulas, automated calculations, for example, target/actual comparisons, can be carried out. Utilizing templates and filters, reports, and graphical analysis can be generated according to the user's needs. Role-based rights management ensures visibility, as well as the editing of elements.  
 
-Within our BrandMaker landscape, Media Pool can be used in conjunction with other modules, for example as a repository for the Brand Management Portal or for creating content organized in the Marketing Planner. Media Pool also supplements the data in the Marketing Data Hub and provides key figures for individual assets via the Reporting Center. 
+Budget data, invoices, etc. can be imported directly into the Marketing Planner. The export of data in different file formats is also possible. Within BrandMaker’s marketing stack, Marketing Planner can be integrated with Media Pool, Brand Template Builder, and Job Manager. 
