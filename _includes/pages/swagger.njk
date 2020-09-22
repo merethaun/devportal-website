@@ -13,35 +13,35 @@
             <header class="hero__header">
                 <section class="hero__slogan hero__slogan--api">
                     <div class="hero__text">
-                        <h1 class="hero__headline">{{ displayName }}</h1>
+                        <h1 class="hero__headline">{{ displayName }}</h1> 
+                        {% set navPages = collections.all | eleventyNavigation("API") %}
+                        <div class="nav_modules">
+                            <!--- eleventy navigation -->
+                            {%- for moduleE in navPages %}
+                            {%- if moduleE.key == module %}
+                            <label class="nav__selectlabel" for="navselect">Selected Version:</label> 
+                                <select onchange="javascipt:handleSelect(this)" id="navselect" class="select-css">
+                                    {%- for pVersion in moduleE.children %}
+                                    <optgroup label="{{ pVersion.title }}">
+                                        {%- for apiV in pVersion.children %}
+                                        {%- if apiV.title == apiVersion %}
+                                        <option value="../../../{{ module }}/{{ pVersion.title }}/{{ apiV.title }}" selected>
+                                            {{ apiV.title }}
+                                        </option>
+                                        {% else %}
+                                        <option value="../../../{{ module }}/{{ pVersion.title }}/{{ apiV.title }}">
+                                            {{ apiV.title }}
+                                        </option>
+                                        {% endif %}
+                                        {% endfor-%}
+                                    </optgroup>
+                                    {% endfor-%}
+                                </select>
+                            {%- endif %}
+                            {%- endfor -%}
+                        </div>
                     </div>
                 </section>
-                {% set navPages = collections.all | eleventyNavigation("API") %}
-                <div class="nav_modules">
-                    <!--- eleventy navigation -->
-                    {%- for moduleE in navPages %}
-                    {%- if moduleE.key == module %}
-                    <label for="navselect">Selected Version:</label> 
-                        <select onchange="javascipt:handleSelect(this)" id="navselect">
-                            {%- for pVersion in moduleE.children %}
-                            <optgroup label="{{ pVersion.title }}">
-                                {%- for apiV in pVersion.children %}
-                                {%- if apiV.title == apiVersion %}
-                                <option value="../../../{{ module }}/{{ pVersion.title }}/{{ apiV.title }}" selected>
-                                    {{ apiV.title }}
-                                </option>
-                                {% else %}
-                                <option value="../../../{{ module }}/{{ pVersion.title }}/{{ apiV.title }}">
-                                    {{ apiV.title }}
-                                </option>
-                                {% endif %}
-                                {% endfor-%}
-                            </optgroup>
-                            {% endfor-%}
-                        </select>
-                    {%- endif %}
-                    {%- endfor -%}
-                </div>
             </header>
             <script type="text/javascript">
                 function handleSelect(elm) {
