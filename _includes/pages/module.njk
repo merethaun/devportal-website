@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     // Check browser support
-    var lastUsedProductVersion;
-    if ((typeof(Storage) !== "undefined") && (localStorage.getItem("{{ module }}_used_productVersion"))) {
+    var lastUsedProductVersion = "{{ destination }}";
+    /* if ((typeof(Storage) !== "undefined") && (localStorage.getItem("{{ module }}_used_productVersion"))) {
       lastUsedProductVersion =  localStorage.getItem("{{ module }}_used_productVersion");  
     } else {
       lastUsedProductVersion = "{{ destination }}"
-    }
+    } */
     
-    var request = new XMLHttpRequest();
+    /*var request = new XMLHttpRequest();
     request.open("GET","./productVersions.json", false);
     request.send(null);
     var jsonData = JSON.parse(request.responseText);
-    lastUsedProductVersion = jsonData.productVersions.includes(lastUsedProductVersion) ? lastUsedProductVersion : "{{ destination }}"
+    lastUsedProductVersion = jsonData.productVersions.includes(lastUsedProductVersion) ? lastUsedProductVersion : "{{ destination }}"*/
     window.location.href = window.location.href + lastUsedProductVersion;
   </script>
 </head>
