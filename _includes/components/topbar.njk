@@ -1,7 +1,7 @@
 <!--- topbar with navigation -->
 <header class="topbar">
     <a class="hero__logolink" href="/">
-        <img src="/assets/bm_logo.svg" alt="Logo Brandmaker">
+        <img src="/assets/bm_logo.svg" alt="Logo Brandmaker">test
     </a>
     <nav class="mainnav">
         {% set navPages = collections.all | eleventyNavigation %}
@@ -13,9 +13,9 @@
                         <!--- only first layer -->
                         {%- for child in entry.children %}
                             <a class="mainnav__listitemlink" href="{{ child.url | url }}">
-                                <h1 class="title">{{child.title}}</h1>
+                                <span class="mainnav__listitemlinktitle">{{child.title}}</span>
                                 {%- if (child.excerpt != "") %}
-                                    <h1 class="info">{{ child.excerpt }}</h1>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">{{ child.excerpt }}</span>
                                 {% endif -%}
                             </a>
                         {% endfor -%}
