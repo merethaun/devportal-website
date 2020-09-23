@@ -5,19 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     // Check browser support
-    var lastUsedProductVersion = "{{ destination }}";
-    /* if ((typeof(Storage) !== "undefined") && (localStorage.getItem("{{ module }}_{{ productVersion }}_used_apiVersion"))) {
-      lastUsedProductVersion =  localStorage.getItem("{{ module }}_{{ productVersion }}_used_apiVersion");  
-    } else {
-      lastUsedProductVersion = "{{ destination }}"
+    var lastUsedApiVersion = "6.4.1.0";//{{ destination }}";
+    if ((typeof(Storage) !== "undefined") && (localStorage.getItem("{{ module }}_{{ productVersion }}_used_apiVersion"))) {
+      lastUsedApiVersion =  localStorage.getItem("{{ module }}_{{ productVersion }}_used_apiVersion");  
     }
     
     var request = new XMLHttpRequest();
     request.open("GET","./apiVersions.json", false);
     request.send(null);
     var jsonData = JSON.parse(request.responseText);
-    lastUsedProductVersion = jsonData.apiVersions.includes(lastUsedProductVersion) ? lastUsedProductVersion : "{{ destination }}"*/
-    window.location.href = window.location.href + lastUsedProductVersion;
+    lastUsedApiVersion = jsonData.apiVersions.includes(lastUsedApiVersion) ? lastUsedApiVersion : "{{ destination }}"
+    window.location.href = window.location.href + lastUsedApiVersion;
   </script>
 </head>
 <body>
