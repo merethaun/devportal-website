@@ -13,9 +13,9 @@
                         <!--- only first layer -->
                         {%- for child in entry.children %}
                             <a class="mainnav__listitemlink" href="{{ child.url | url }}">
-                                <h1 class="title">{{child.title}}</h1>
+                                <span class="mainnav__listitemlinktitle">{{child.title}}</span>
                                 {%- if (child.excerpt != "") %}
-                                    <h1 class="info">{{ child.excerpt }}</h1>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">{{ child.excerpt }}</span>
                                 {% endif -%}
                             </a>
                         {% endfor -%}
