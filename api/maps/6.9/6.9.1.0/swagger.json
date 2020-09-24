@@ -1,0 +1,28 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Mockup for Marketing Planner API",
+    "title": "Marketing Planner",
+    "version": "6.9.1.0"
+  },
+  "tags": [
+    {
+      "name": "mockup",
+      "description": "Example"
+    }
+  ],
+  "paths": {
+    "/mockup": {
+      "post": {
+        "tags": [
+          "mockup"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  }
+}
