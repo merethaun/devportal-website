@@ -2,7 +2,7 @@
 title: Marketing Planner
 tags: ['teaser']
 icon: logo_marketingplanner
-destination: mediapool
+destination: marketingplanner
 shorttext: With BrandMaker Marketing Planner, you gain full visibility and control over all campaigns, financial planning, and performance measurement. It thus provides a comprehensive platform for all stakeholders.  
 ---
 With BrandMaker Marketing Planner, you gain full visibility and control over all campaigns, financial planning, and performance measurement. It thus provides a comprehensive platform for all stakeholders.  

@@ -2,7 +2,7 @@
 title: Job Manager 
 tags: ['teaser']
 icon: logo_jobmanager
-destination: JobManager
+destination: jobmanager
 shorttext: Job Manager streamlines project management and collaboration, with all jobs and workflows transparently managed, controlled, and processed – no matter whether marketing projects, budget releases or purchase orders.  
 ---
 Web to Publish enables the CD compliant design, adaption, and localization of marketing assets, such as advertisements, brochures, business cards, or posters, without using special applications.  
