@@ -2,7 +2,7 @@
 title: Media Pool
 tags: ['teaser']
 icon: logo_mediapool
-destination: mediapool
+destination: MediaPool
 shorttext: Media Pool delivers a central place to store and manage digital assets in any format, for any device, and for any purpose. Within our BrandMaker marketing stack, Media Pool can be used in conjunction with every other module.
 ---
 Media Pool delivers a central place to store and manage digital assets in any format, for any device, and for any purpose.

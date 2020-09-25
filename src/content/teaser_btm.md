@@ -2,7 +2,7 @@
 title: Web to Publish
 tags: ['teaser']
 icon: logo_brandportal
-destination: webtopublish
+destination: WebToPublish
 shorttext: Web to Publish enables the CD compliant design, adaption, and localization of marketing assets, such as advertisements, brochures, business cards, or posters, without using special applications.  
 ---
 Web to Publish enables the CD compliant design, adaption, and localization of marketing assets, such as advertisements, brochures, business cards, or posters, without using special applications.  
