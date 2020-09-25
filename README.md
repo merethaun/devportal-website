@@ -41,10 +41,11 @@ The swagger.json files should be added into the "api" folder in the following st
 Example: _api/MediaPool/6.8/6.8.1.0/mediapool-api-6.8.1.0.json_ \
 It's important, that every api version folder contains only one file.
 
-Every module needs a **module.json** file (api/_\<module name>_/module.json) with a name, which will be displayed in the navigation and as the title:
+Every module needs a **module.json** file (api/_\<module name>_/module.json) with a name, which will be displayed in the navigation and as the title. It can also have a variable "info", which contain a tagline displayed in the navigation under the title.
 ```
 {
-    "name": "<module name>"
+    "name": "<module name>",
+    "info": "<This is a great module>"
 }
 ```
 
