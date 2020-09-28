@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ pageTitle }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/main.css">
+    </head>
+    <body class="{{ bodyClass }}">
+        {% include 'components/topbar.njk' %}
+        <section class="hero">
+            <section class="hero__slogan">
+                <div class="hero__text">
+                    <ul class="teaser">
+                        <li class="teaser__item{% if teaser.icon %} teaser__item--hasicon{% endif %}">
+                            <div class="teaser__wrapper">
+                                <div class="teaser__content">
+                                    <h1 class="teaser__title">{{ claim | safe }}</h3>
+                                    <div class="teaser__contenttext">
+                                        {{ subclaim }}
+                                    </div>
+                                </div>
+                                <div class="teaser__icon">
+                                    <img src="/assets/Zahnrad.svg" alt="Illustration API">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <ul class="teaser">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Authentication</h3>
+                    <div class="teaser__contenttext">
+                        Description on how to Authenticate, so you can test out API by your own.
+                    </div>
+                    <a class="cta cta--teaser" href="/guides/auth">Discover Authentication Guide</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+    </body>
+</html>
