@@ -1,0 +1,96 @@
+html
+    scroll-behavior smooth
+body.guide
+    background: linear-gradient(0deg,#0c0f2c 50px,#0e133c 100%);
+    background-size 100% 100vh
+    background-attachment: fixed
+    .hero
+        background transparent
+        // height 110vh
+        &__headline
+            margin 1rem 0
+            font-size 5rem
+        &__description
+            text-align center
+            font-size 1.5rem
+.guide
+    &__mainlayout
+        color white
+        max-width 1600px
+        margin 1rem auto
+        display flex
+        font-size 1.375rem
+        line-height 1.5
+        padding 0 1rem
+    &__aside
+        flex 1 1 30%
+        padding 2rem 3rem 1rem 1rem
+        line-height 1.2
+    &__article
+        flex 1 1 70%
+        padding 1rem
+    table
+        border-spacing: 1;
+        border-collapse: collapse;
+        background: $bg-darker;
+        border-radius: 5px;
+        overflow: hidden;
+        width: 100%;
+        margin: 2rem auto;
+        position: relative;
+        font-size 1.25rem
+        * 
+            position: relative;
+        td, th
+            padding: 8px;
+            text-align: left;
+        thead tr
+            height: 60px;
+            background: $bg-lighter;
+        tbody tr
+            height: 50px;
+        tbody tr:nth-child(even)
+            background-color: $bg-light;
+        tbody tr:last-child
+            border: 0;
+        tbody td:first-child
+            font-family monospace
+            padding-right 1rem
+            font-size 1.375rem
+    p
+        margin 0 0 1.5rem
+    h2,h3,h4
+        scroll-margin-top: 75px;
+    h2
+        font-size 2.25rem
+        margin 2rem 0 1rem
+        border-bottom 1px solid $bg-lightest
+        padding-bottom .5rem
+    img 
+        max-width 100%
+        display block
+        margin 2rem auto
+    h3
+        font-size 1.75rem
+        margin 2rem 0 1rem
+    h4
+        font-size 1.375rem
+        margin 1.5rem 0 .5rem
+    li
+        margin-bottom 1rem
+    pre
+        font-size 1rem
+    .toc
+        position sticky
+        top 80px
+        font-size 1.25rem
+        &__heading
+            font-size 1rem
+            text-transform uppercase
+        &__list
+            margin .5rem 0 1.25rem
+            padding 0 0 0 1.5rem
+        &__list-item
+            margin 0 0 .5rem
+            &-anchor
+                text-decoration none

@@ -2,6 +2,10 @@ const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const fg = require('fast-glob');
 const fs = require('fs');
 let Nunjucks = require("nunjucks");
+const eleventyPluginTOC = require( '@thedigitalman/eleventy-plugin-toc-a11y' );
+const markdownIt = require( 'markdown-it' );
+const markdownItAnchor = require( 'markdown-it-anchor' );
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 //const modulesUnstuctured = fg.sync('api/**', { onlyFiles: false, deep: 4, objectMode: true });
 const moduleFiles = fg.sync('api/**', { onlyFiles: true, deep: 4, objectMode: true });
@@ -15,7 +19,30 @@ module.exports = function (eleventyConfig) {
 
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
+    // TOC support in MD
 
+    eleventyConfig.addPlugin( eleventyPluginTOC,
+        {
+            tags: ['h2', 'h3', 'h4', 'h5', 'h6'],
+            wrapper: 'nav',
+            wrapperClass: 'toc',
+            heading: true,
+            headingClass: 'toc__heading',
+            headingLevel: 'h2',
+            headingText: 'Table of contents',
+            listType: 'ol',
+            listClass: 'toc__list',
+            listItemClass: 'toc__list-item',
+            listItemAnchorClass: 'toc__list-item-anchor'
+        }
+    );
+
+    eleventyConfig.addPlugin(syntaxHighlight);
+ 
+    // Markdown settings
+    eleventyConfig.setLibrary( 'md',
+        markdownIt().use( markdownItAnchor )
+    );
     
     /* 
         {moduleName, productVersions: {

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ pageTitle }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/main.css">
+        <link rel="stylesheet" type="text/css" href="../../../../swagger/swagger-ui.css?v=2" >
+    </head>
+    <body class="guide">
+        {% include 'components/topbar.njk' %}
+        <section class="hero">
+            <header class="hero__header">
+                <h1 class="hero__headline">{{ title }}</h1> 
+                <div class="hero__description">
+                    {{ description }}
+                </div>
+            </header>
+        </section>
+        <main class="guide__mainlayout">
+            <aside class="guide__aside">
+                {{ content | toc | safe }}
+            </aside>
+            <article class="guide__article">
+                {{ content | safe }}
+            </section>
+        </main>
+    </body>
+</html>
