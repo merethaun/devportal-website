@@ -1,7 +1,7 @@
 ---
 layout: pages/guide.njk
-pageTitle: BrandMaker Dev Portal
-description: Using OAuth 2.0 to Access BrandMaker APIs
+pageTitle: Authentification
+description: How to Authenticate 3rd Party Applications to your BrandMaker Instance
 eleventyNavigation:
     parent: "Guides"
     key: "auth"
@@ -12,141 +12,162 @@ permalink: "guides/auth/"
 bodyClass: "guide"
 title: "Authentication"
 ---
-BrandMaker Login für das Web mit dem JavaScript-SDK
-=================================================
-***Dies ist nur ein Blindtext für Vorführzwecke, der echte Text folgt asap***
+Prerequisits
+=============
 
-Dieses Dokument führt dich durch die Schritte zur Implementierung von BrandMaker Login mit dem [BrandMaker-SDK für JavaScript](/docs/javascript) auf deiner Webseite.
+In order to authenticate a 3rd party application against your BrandMaker
+Instance and accessing the APIs of the BrandMaker Modules, you need an
+oAuth2 access token and a refresh token. BrandMaker provides a
+centralized authentication system for all customers (Centralized
+Authentication Service - CAS), which implements the the standardized
+[oAuth2 Web Flow](https://oauth.net/2/).
 
-Wenn du als BrandMaker-Nutzer Probleme mit der Anmeldung an deinem Konto hast, besuche unseren [Hilfebereich](https://www.BrandMaker.com/help/292105707596942/).
+### Required steps
+The following steps need to be done in order to register your app and
+authenticate and authorize an application user:
 
-Bevor du beginnst
------------------
+1.  Make sure, your BrandMaker Instance is registered as Resource Server
+    on the CAS. On questions regarding this, please contact our [Support
+    Team](https://www.brandmaker.com/contact/support-ticket/)
+2.  [Register your App](#register-your-app) through
+    the administration in your BrandMaker Instance
+3.  [Initiate the oAuth2](#initiate-the-oauth2) flow to
+    authenticate a user for your application
+4.  Store your client ID and Client Secret provided in step 2 in a safe
+    place, we are not able to recover the secret at any later time!
+5.  Store the access token and refresh token provided in step 3 along
+    with your app
+6.  [Use the tokens](#authenticate-against-the-brandmaker-apis) in order to
+    access any of the BrandMaker APIs
+7.  Check the expiration time of your access token and [retrieve a new
+    one with the refresh token](#request-a-new-access-token-with-the-refresh-token)
+    once it is close to expire
 
-Du benötigst Folgendes:
+All necessary end-point URLs for the flow will be provided in step 2
+above. This information is always available in the administration in
+your BrandMaker Instance.
 
-*   Ein [BrandMaker-Entwicklerkonto](https://developers.BrandMaker.com/apps/)
-    
-*   Eine [registrierte BrandMaker-App](https://developers.BrandMaker.com/docs/apps#register) mit konfigurierten Allgemeinen Einstellungen
-    
-*   Das [BrandMaker JavaScript-SDK](https://developers.BrandMaker.com/docs/javascript)
-    
+## Register your App
 
-Wenn du, aus welchen Gründen auch immer, unser JavaScript-SDK nicht verwenden kannst, kannst du zum Implementieren von BrandMaker Login [manuell einen Login-Vorgang erstellen](/docs/BrandMaker-login/manually-build-a-login-flow).
+### Client ID and Client Secret
 
-Gib deine Umleitungs-URL im App-Dashboard ein.
---------------------------------------------------
+In order to connect your application via oAuth2 you will need a client
+ID and a client secret. You get access to these the following way:
 
-Wähle im [App-Dashboard](https://developers.BrandMaker.com/apps) deine App aus und navigiere zu **Produkt hinzufügen**. Klicke auf der Karte **BrandMaker Login** auf **Einrichten**. Wähle im linken Navigationspanel **Einstellungen** und gib unter **Client-OAuth-Einstellungen** deine Umleitungs-URL in das Feld „**Gültige OAuth Redirect URIs** ein, um dich erfolgreich zu authentifizieren.
+1.  Log in to your BrandMaker system.
+2.  Navigate to your Administration space
+3.  On the left, under System Configuration =\> Registered Apps you can
+    register a new app. ![](/assets/guides/auth/clientsecret.png)
 
-Prüfe den Login-Status für eine Person
-------------------------------------------
+4.  After you have successfully registered your app, you will be shown a
+    screen with your client ID and client secret
 
-Beim Laden deiner Webseite solltest du als Erstes herausfinden, ob eine Person über BrandMaker Login bereits bei deiner Webseite angemeldet ist. Mit dem Aufruf von [`FB.getLoginStatus`](/docs/reference/javascript/FB.getLoginStatus) wird ein Aufruf von BrandMaker ausgelöst, um den Login-Status zu erfahren. BrandMaker ruft dann deine Rückruffunktion mit den Ergebnissen auf.
+### Client Secret
 
-### Beispielaufruf
+The client secret is only shown immediately after the registration of a client in step 2 above and cannot be recovered afterwards. If the secret is lost, you need to de-register and re-register the app again and all provided tokens are invalidated!
 
-``` js
-FB.getLoginStatus(function(response) { statusChangeCallback(response); });
+ ![](/assets/guides/auth/clientsecretid.png)
+
+## Initiate the oAuth2
+
+### Refresh Token and Access Token
+
+Now that you have obtained your client ID and client secret, your
+application will have to acquire an access token and a refresh token.
+
+In order to acquire your first access token and refresh token, your need
+an OAuth2.0 authorization code. In order to acquire this OAuth2.0
+authorization code, your app will need to send the client ID and client
+secret to the following CAS-URL via GET:
+
+Your user will also be prompted with a login challenge at this point.
+
+### GET Parameters
+
+|Key|Type|Value|
+|--- |--- |--- |
+|client_id|string|Your client ID from the client registration|
+|redirect_uri|string|Redirect Url that was specified during client registration|
+|response_type|string|"code"|
+|response_mode|string|"query"|
+|state|string|[String of 8 characters](https://auth0.com/docs/protocols/state-parameters)|
+
+### Example Request
+
+``` xquery
+curl "https://cas.brandmaker.com/oauth2/auth?
+    client_id=6274aa2f-a93f-479c-a3b3-62850f8322bd&
+    redirect_uri=https%3A%2F%2Foauthdebugger.com%2Fdebug&
+    response_type=code&
+    response_mode=query&
+    state=12345678"
 ```
 
-### Beispiel einer JSON-Antwort
+ After your application has successfully acquired an oAuth 2.0 authorization code, you can now acquire your refresh token and access token from this CAS-URL via POST: 
 
-``` js
-{ 
-    status: 'connected', 
-    authResponse: { 
-        accessToken: '{access-token}', 
-        expiresIn:'{unix-timestamp}', 
-        reauthorize_required_in:'{seconds-until-token-expires}', 
-        signedRequest:'{signed-parameter}', 
-        userID:'{user-id}' 
-    } 
-}
+ ### POST Parameters
+
+ ``` xquery
+curl -d "code=oauth2_authorization_code&\
+    client_id=6274aa2f-a93f-479c-a3b3-62850f8322bd&\
+    client_secret=your_client_secret&\
+    grant_type=authorization_code&\
+    redirect_uri=https%3A%2F%2Foauthdebugger.com%2Fdebug%0D%0A" -X POST "https://cas.brandmaker.com/api/v1.0/api/token"
 ```
 
-`status` gibt den Login-Status der Person an, die die Webseite verwendet. Der `status` kann einer der Folgenden sein:
+Now that your application has acquired its access token and refresh token, it can now make requests to the BrandMaker APIs. In order to access such a BrandMaker resource you need to include your access token in each request in the header "authorization". The token must be prefixed with the keyword "bearer " (with whitespace). For more information regarding bearer tokens you can visit the following [site](https://tools.ietf.org/html/rfc6750).
 
-|Status Typ|Beschreibung|
-|--- |--- |
-|connected|Die Person ist bei BrandMaker angemeldet und hat sich bei deiner Webseite angemeldet.|
-|not_authorized|Die Person ist bei BrandMaker angemeldet, hat sich aber nicht bei deiner Webseite angemeldet.|
-|unknown|Die Person ist nicht bei BrandMaker angemeldet. Du weißt also nicht, ob sie bei deiner Webseite angemeldet ist. Möglicherweise wurde auch zuvor FB.logout() aufgerufen und die Verbindung zu BrandMaker ist deshalb nicht möglich.|
+### Flow Overview
 
-Anmelden einer Person
--------------------------
+ ![](/assets/guides/auth/flowoverview.png)
 
-Wenn ein Nutzer deine Webseite aufruft, aber nicht bei der Webseite oder bei BrandMaker angemeldet ist, kannst ihn über den [Login-Dialog](/docs/BrandMaker-login/overview/#logindialog) zur Anmeldung auffordern. Wenn die Nutzer nicht bei BrandMaker angemeldet sind, werden sie zuerst zur Anmeldung bei BrandMaker aufgefordert und dann zur Anmeldung bei deiner Webseite.
+## Authenticate against the BrandMaker APIs
 
-![alt text](https://developers.google.com/identity/protocols/oauth2/images/flows/authorization-code.png "Example Image Title")
+In order to authenticate your application against any BrandMaker API,
+use the given authentication token from step 3 above.
 
-Es gibt zwei Möglichkeiten, eine Person anzumelden:
+The token must be put into an [Authorization
+header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)
+in the according request:
 
-*   Den [BrandMaker Login](#loginbutton)\-Button
-    
-*   Der [Login-Dialog](#logindialog) über das JavaScript-SDK
-    
+**Authorization Header in Request to BrandMaker API**
+``` xquery
+Authorization: Bearer 98w7n98wvetr98vern9t87vq9tz ... c9n4837590nv8eorfpocrw74n87c
+```
 
-### A. Login über den Login-Button
+If the token has expired, an according error message is sent back, which
+may differ depending on which internal system you are trying to access.
+The response's http status code is always 403.
 
-Verwende zur Nutzung des Login-Buttons unseren [Plug-in-Konfigurator](/docs/BrandMaker-login/web/login-button) zur [Anpassung des Login-Buttons](/docs/BrandMaker-login/web/login-button) und rufe den Code ab.
+## Request a New Access Token with the Refresh Token
 
+In order to request a new access token with the refresh token, issue a
+request against the token refresh endpoint given in step 2 above:
 
-### B. Login über den Login-Dialog des JavaScript-SDK
+### POST parameters
 
-Rufe zur Verwendung deines eigenen Buttons den Login-Dialog mit einem Aufruf von [`FB.login()`](/docs/reference/javascript/FB.login) auf.
+|Key|Type|Value|
+|--- |--- |--- |
+|code|string|OAuth 2.0 authorization code|
+|client_id|string|Your client ID from the client registration|
+|client_secret|string|Your client secret from the client registration|
+|grant_type|string|"authorization_code"|
+|redirect_uri|string|Redirect Url that was specified during client registration|
 
-FB.login(function(response){ // handle the response });
+### Example request CURL
 
-### Nach zusätzlichen Berechtigungen fragen
+ ``` xquery
+curl -d "client_id=6274aa2f-a93f-479c-a3b3-62850f8322bd&\
+    client_secret=your_client_secret&\
+    grant_type=refresh_token&\
+    refresh_token=your_refresh_token" -X POST "https://cas.brandmaker.com/api/v1.0/api/token"
+```
 
-Wenn eine Person auf deinen HTML-Button klickt, wird ein Popup-Fenster mit dem Login-Dialog angezeigt. In diesem Dialog kannst du [nach einer Berechtigung](/docs/BrandMaker-login/web/permissions) für den Zugriff auf die Daten einer Person fragen. Der `scope`\-Parameter kann zusammen mit dem `FB.login()`\-Funktionsaufruf übergeben werden. Dieser optionale Parameter ist eine Liste mit [Berechtigungen](/docs/BrandMaker-login/permissions) (durch Kommata getrennt), die eine Person bestätigen muss, damit deine Webseite auf deren Daten zugreifen kann.
+If you request a new token with the refresh token, you are automatically issued a completely new pair of tokens. The old refresh token expires.
 
-#### Beispielaufruf
+## OAuth Debugger
+You can test the OAuth2.0 flow on [https://oauthdebugger.com/](https://oauthdebugger.com/)
 
-Mit diesem Beispiel wird die Person, die sich anmeldet, gefragt, ob deine Webseite Berechtigung für den Zugriff auf ihr öffentliches Profil und ihre E-Mail-Adresse erhalten kann.
+### Example input:
 
-FB.login(function(response) { // handle the response }, {scope: 'public\_profile,email'});
-
-### Die Antwort des Login-Dialogs verarbeiten
-
-Mit der Antwort, entweder auf die Verbindung oder den Abbruch, wird ein `authResponse`\-Objekt an den Rückruf gesendet, den du festgelegt hast, als du den `FB.login()`\-Aufruf gestartet hast. Diese Antwort kann innerhalb des `FB.login()` erkannt und verarbeitet werden.
-
-#### Beispielaufruf
-
-FB.login(function(response) { if (response.status \=== 'connected') { // Logged into your webpage and BrandMaker. } else { // The person is not logged into your webpage or we are unable to tell. } });
-
-Abmelden einer Person
--------------------------
-
-Melde Nutzer von deiner Webseite ab, indem du die JavaScript-SDK-Funktion `FB.logout()` einem Button oder einem Link hinzufügst.
-
-#### Beispielaufruf
-
-FB.logout(function(response) { // Person is now logged out });
-
-**Hinweis: Mit dieser Funktion wird der Nutzer möglicherweise auch bei BrandMaker abgemeldet.**
-
-#### Interessante Szenarien
-
-1.  Eine Person meldet sich bei BrandMaker danach bei deiner Webseite. Wenn sie sich von deiner App abmeldet, ist sie weiterhin bei BrandMaker angemeldet.
-2.  Eine Person meldet sich im Rahmen des Anmeldevorgangs deiner App bei deiner Webseite und bei BrandMaker an. Wenn sie sich von deiner App abmeldet, wird sie auch von BrandMaker abgemeldet.
-3.  Eine Person meldet sich im Rahmen des Anmeldevorgangs einer anderen Webseite bei einer anderen Webseite und bei BrandMaker an. Danach meldet sie sich bei deiner Webseite an. Wenn sie sich von einer der beiden Webseiten abmeldet, wird sie auch von BrandMaker abgemeldet.
-
-Außerdem werden mit der Abmeldung von deiner Webseite keine Berechtigungen widerrufen, die die Person deiner Webseite im Rahmen der Anmeldung gewährt hat. Der [Widerruf von Berechtigungen](/docs/BrandMaker-login/permissions#revokelogin) muss separat erfolgen. Konfiguriere deine Webseite so, dass eine Person, die sich abgemeldet hat, den Login-Dialog nicht sieht, wenn sie sich erneut anmeldet.
-
-Vollständiges Codebeispiel
---------------------------
-
-Dieser Code wird geladen und initialisiert das JavaScript-SDK in deine HTML-Seite. Ersetze `{app-id}` durch deine [App-ID](https://developers.BrandMaker.com/docs/apps) und `{api-version}` durch die zu verwendende Graph API-Version. Sofern es keinen speziellen Grund zur Verwendung einer älteren Version gibt, solltest du die aktuellste Version angeben. `v8.0`.
-
-
-### Weitere Ressourcen
-
-*   Dokumentation zum [Login-Button](/docs/plugins/login-button).
-    
-*   [`FB.login()`\-Referenz](/docs/reference/javascript/FB.login)
-    
-*   [`FB.getLoginStatus()`\-Referenz](/docs/reference/javascript.FB.getLoginStatus)
-    
-*   [JavaScript-SDK-Referenz](/docs/reference/javascript)
+ ![](/assets/guides/auth/oauth2.png)

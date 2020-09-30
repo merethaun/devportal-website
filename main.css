@@ -296,6 +296,9 @@ body.guide {
 body.guide .hero {
   background: transparent;
 }
+body.guide .hero__header {
+  text-align: center;
+}
 body.guide .hero__headline {
   margin: 1rem 0;
   font-size: 5rem;
@@ -378,7 +381,7 @@ body.guide .hero__description {
 .guide img {
   max-width: 100%;
   display: block;
-  margin: 2rem auto;
+  margin: 2rem 0;
 }
 .guide h3 {
   font-size: 1.75rem;

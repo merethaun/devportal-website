@@ -1,0 +1,179 @@
+<h1>How to Authenticate 3rd Party Applications to your BrandMaker Instance</h1>
+<p>In order to authenticate a 3rd party application against your BrandMaker Instance and accessing the APIs of the BrandMaker Modules, you need an oAuth2 access token and a refresh token. BrandMaker provides a centralized authentication system for all customers (Centralized Authentication Service - CAS), which implements the the standardized <a href="https://oauth.net/2/">oAuth2 Web Flow</a>.</p>
+<p>The following steps need to be done in order to register your app and authenticate and authorize an application user:</p>
+<ol>
+<li>Make sure, your BrandMaker Instance is registered as Resource Server on the CAS. On questions regarding this, please contact our <a href="https://www.brandmaker.com/contact/support-ticket/">Support Team</a></li>
+<li><a href="#id-73rdPartyDeveloperDocumentation-A">Register your App</a> through the administration in your BrandMaker Instance</li>
+<li><a href="#id-73rdPartyDeveloperDocumentation-B">Initiate the oAuth2</a> flow to authenticate a user for your application</li>
+<li>Store your client ID and Client Secret provided in step 2 in a safe place, we are not able to recover the secret at any later time!</li>
+<li>Store the access token and refresh token provided in step 3 along with your app</li>
+<li><a href="#id-73rdPartyDeveloperDocumentation-C">Use the tokens</a> in order to access any of the BrandMaker APIs</li>
+<li>Check the expiration time of your access token and <a href="#id-73rdPartyDeveloperDocumentation-D">retrieve a new one with the refresh token</a> once it is close to expire</li>
+</ol>
+<p>All necessary end-point URLs for the flow will be provided in step 2 above. This information is always available in the administration in your BrandMaker Instance.</p>
+<h1>Client ID and Client Secret</h1>
+<p>In order to connect your application via oAuth2 you will need a client ID and a client secret. You get access to these the following way:</p>
+<ol>
+<li>Log in to your BrandMaker system.</li>
+<li>Navigate to your Administration space</li>
+<li>On the left, under System Configuration =&gt; Registered Apps you can register a new app.<br/>
+<p><img src="/confluence/download/attachments/22316090/New+App+Register.PNG?version=2&amp;modificationDate=1601376078000"/></p>
+</li>
+<li>After you have successfully registered your app, you will be shown a screen with your client ID and client secret</li>
+</ol>
+
+<table><colgroup><col/><col/></colgroup>
+<tbody>
+<tr>
+<td><img src="/confluence/images/icons/emoticons/information.png"/></td>
+<td>Client Secret<br/>
+<p>The client secret is only shown immediately after the registration of a client in step 2 above and cannot be recovered afterwards. If the secret is lost, you need to de-register and re-register the app again and all provided tokens are invalidated!</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p><img src="/confluence/download/attachments/22316090/Client+secret+and+ID.PNG?version=2&amp;modificationDate=1601376112000"/></p>
+<h1>Refresh Token and Access Token</h1>
+<p>Now that you have obtained your client ID and client secret, your application will have to acquire an access token and a refresh token.</p>
+<p>In order to acquire your first access token and refresh token, your need an OAuth2.0 authorization code. In order to acquire this OAuth2.0 authorization code, your app will need to send the client ID and client secret to the following CAS-URL via GET:</p>
+<p>Your user will also be prompted with a login challenge at this point.</p>
+<p>GET Parameters:</p>
+
+<table>
+<tbody>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>client_id</td>
+<td>string</td>
+<td>Your client ID from the client registration</td>
+</tr>
+<tr>
+<td>redirect_uri</td>
+<td>string</td>
+<td>Redirect Url that was specified during client registration</td>
+</tr>
+<tr>
+<td>response_type</td>
+<td>string</td>
+<td>"code"</td>
+</tr>
+<tr>
+<td>
+<p>response_mode</p>
+</td>
+<td>string</td>
+<td>"query"</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>String of 8 characters (<a href="https://auth0.com/docs/protocols/state-parameters">https://auth0.com/docs/protocols/state-parameters</a>)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example request:</p>
+
+Example Request CURL
+
+<p>After your application has successfully acquired an oAuth 2.0 authorization code, you can now acquire your refresh token and access token from this CAS-URL via POST:</p>
+<p>POST parameters:</p>
+
+<table>
+<tbody>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>OAuth 2.0 authorization code</td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>string</td>
+<td>Your client ID from the client registration</td>
+</tr>
+<tr>
+<td>client_secret</td>
+<td>string</td>
+<td>Your client secret from the client registration</td>
+</tr>
+<tr>
+<td>grant_type</td>
+<td>string</td>
+<td>"authorization_code"</td>
+</tr>
+<tr>
+<td>redirect_uri</td>
+<td>string</td>
+<td>Redirect Url that was specified during client registration</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example request:</p>
+
+Example Request CURL
+
+<p>3.) Now that your application has acquired its access token and refresh token, it can now make requests to the BrandMaker APIs. In order to access such a BrandMaker resource you will need to include your access token in each request in the header "authorization". The token must be prefixed with the keyword "bearer " (with whitespace). For more information regarding bearer tokens you can visit the following site: <a href="https://tools.ietf.org/html/rfc6750">https://tools.ietf.org/html/rfc6750</a></p>
+<h3>Flow Overview</h3>
+<p><img src="/confluence/download/attachments/22316090/Capture.PNG?version=2&amp;modificationDate=1601384897000"/></p>
+<h1>Authenticate against the BrandMaker APIs</h1>
+<p>In order to authenticate your application against any BrandMaker API, use the given authentication token from step 3 above.</p>
+<p>The token must be put into an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Authorization header</a> in the according request:</p>
+
+Authorization Header in Request to BrandMaker API
+
+<p>If the token has expired, an according error message is sent back, which may differ depending on which internal system you are trying to access. The response's http status code is always 403.</p>
+<h2>Request a New Access Token with the Refresh Token</h2>
+<p>In order to request a new access token with the refresh token, issue a request against the token refresh endpoint given in step 2 above:</p>
+<p>POST parameters:</p>
+
+<table>
+<tbody>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>client_id</td>
+<td>string</td>
+<td>Your client ID from the client registration</td>
+</tr>
+<tr>
+<td>client_secret</td>
+<td>string</td>
+<td>Your client secret from the client registration</td>
+</tr>
+<tr>
+<td>grant_type</td>
+<td>string</td>
+<td>"refresh_token"</td>
+</tr>
+<tr>
+<td>refresh_token</td>
+<td>string</td>
+<td>Your refresh token</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example request:</p>
+
+Example Request CURL
+
+<p>If you request a new token with the refresh token, you will automatically be issued a completely new pair of tokens. The old refresh token will expire.</p>
+<h1>OAuth Debugger</h1>
+<p>You can test the OAuth2.0 flow on <a href="https://oauthdebugger.com/">https://oauthdebugger.com/</a></p>
+<p>Example input:</p>
+<p><img src="/confluence/download/thumbnails/22316090/image2020-9-29+12%3A38%3A17.png"/></p>
+<p>A collection of great <a href="https://html-css-js.com/css/">CSS tools</a> and resources can be found at html-css-js.com: code beautifier, cheat sheet, style generators, useful links and more.</p>
