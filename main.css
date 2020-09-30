@@ -414,6 +414,9 @@ body.guide .hero__description {
 .guide .toc__list-item {
   margin: 0 0 0.5rem;
 }
+.guide .toc__list-item .toc__list {
+  font-size: 1rem;
+}
 .guide .toc__list-item-anchor {
   text-decoration: none;
 }
