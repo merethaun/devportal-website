@@ -476,6 +476,7 @@ a {
 .hero__text {
   margin: 0 auto 4rem;
   max-width: 1280px;
+  width: 100%;
 }
 .inner .hero .hero__text {
   margin-bottom: 0;
@@ -533,6 +534,9 @@ a {
   align-items: stretch;
   max-width: 1140px;
   margin: 0 auto;
+}
+.hero .teaser__wrapper {
+  align-items: center;
 }
 .inner .teaser__wrapper {
   max-width: 1200px;
