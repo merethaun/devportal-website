@@ -1,4 +1,4 @@
-name: Eleventy Build
+name: Eleventy Build and deploy to published-pages
 on: 
   push: 
     branches: [ master ]
@@ -25,4 +25,3 @@ jobs:
           PUBLISH_DIR: _site 
           PUBLISH_BRANCH: published-pages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        

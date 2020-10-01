@@ -6,6 +6,7 @@ const eleventyPluginTOC = require( '@thedigitalman/eleventy-plugin-toc-a11y' );
 const markdownIt = require( 'markdown-it' );
 const markdownItAnchor = require( 'markdown-it-anchor' );
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const { exit } = require("process");
 
 //const modulesUnstuctured = fg.sync('api/**', { onlyFiles: false, deep: 4, objectMode: true });
 const moduleFiles = fg.sync('api/**', { onlyFiles: true, deep: 4, objectMode: true });
@@ -134,6 +135,10 @@ module.exports = function (eleventyConfig) {
                 }
                 apiVersionPage.push([moduleName, displayNames.get(moduleName), productVersion, apiVersion, file]);
             });
+            if (lastApiVersion == null) {
+                console.log("Error with API version");
+                exit(1);
+            }
             productVersionPage.push([moduleName, productVersion, lastApiVersion]);
             lastApiVersion = null;
             apiVersionJson = apiVersionJson.slice(0, -1);
@@ -142,6 +147,10 @@ module.exports = function (eleventyConfig) {
                 if(err) console.log('error', err);
             });
         });
+        if (lastProductVersion == null) {
+            console.log("Error with product version");
+            exit(1);
+        }
         productVersionJson = productVersionJson.slice(0, -1);
         productVersionJson = productVersionJson + "]}";
         fs.writeFile("api/" + moduleName + "/productVersions.json", productVersionJson, function(err, result) {
