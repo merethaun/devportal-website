@@ -72,9 +72,11 @@ module.exports = function (eleventyConfig) {
     let displayNames = new Map();
     let info = new Map();
     moduleFiles.forEach(({name, path}) => {
+        console.log("name path moduleFiles", name, path);
         const type = path.split("/").length - 1; // if 2: module.json (display name), if 4: swagger.json
-
+        console.log("type", type);
         const moduleName = path.split("/")[1];
+        console.log("moduleName", moduleName);
         if (type == 2) {
             var obj = JSON.parse(fs.readFileSync(path, 'utf8'));
             displayNames.set(moduleName, obj.name);

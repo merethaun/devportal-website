@@ -2,6 +2,8 @@
 layout: pages/guide.njk
 pageTitle: Authentification
 description: How to Authenticate 3rd Party Applications to your BrandMaker Instance
+teaserText: "In order to authenticate a 3rd party application against your BrandMaker Instance and accessing the APIs of the BrandMaker Modules, you need an oAuth2 access token and a refresh token. BrandMaker provides a centralized authentication system for all customers (Centralized Authentication Service - CAS), which implements the the standardized oAuth2 Web Flow."
+tags: ['guide']
 eleventyNavigation:
     parent: "Guides"
     key: "auth"

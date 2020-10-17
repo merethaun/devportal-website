@@ -110,10 +110,11 @@ a
         width 100%
         &:nth-child(even)
             background #f4f8f9
-            .teaser__wrapper
-                flex-direction: row-reverse
-            .teaser__content
-                padding 1rem 1rem 1rem 5%
+            .not(.teaser__item--guides)
+                .teaser__wrapper
+                    flex-direction: row-reverse
+                .teaser__content
+                    padding 1rem 1rem 1rem 5%
     &__content
         flex 1 1 auto
         padding 1rem 5% 1rem 1rem

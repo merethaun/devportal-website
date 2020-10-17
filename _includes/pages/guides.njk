@@ -13,7 +13,7 @@
             <section class="hero__slogan">
                 <div class="hero__text">
                     <ul class="teaser">
-                        <li class="teaser__item{% if teaser.icon %} teaser__item--hasicon{% endif %}">
+                        <li class="teaser__item teaser__item--guide {% if teaser.icon %} teaser__item--hasicon{% endif %}">
                             <div class="teaser__wrapper">
                                 <div class="teaser__content">
                                     <h1 class="teaser__title">{{ claim | safe }}</h3>
@@ -31,16 +31,19 @@
             </section>
         </section>
         <ul class="teaser">
-            <div class="teaser__wrapper">
-                <div class="teaser__content">
-                    <h3 class="teaser__title">Authentication</h3>
-                    <div class="teaser__contenttext">
-                        Description on how to use OAuth2 for authentication to connect to our API.
+            {% for teaser in collections.guide -%}
+            <li class="teaser__item{% if teaser.icon %} teaser__item--hasicon{% endif %}">
+                <div class="teaser__wrapper">
+                    <div class="teaser__content">
+                        <h3 class="teaser__title">{{ teaser.data.title }}</h3>
+                        <div class="teaser__contenttext">
+                            {{ teaser.data.teaserText }}
+                        </div>
+                        <a class="cta cta--teaser" href="/api/{{ teaser.data.destination }}">Read the {{ teaser.data.title }} Guide</a>
                     </div>
-                    <a class="cta cta--teaser" href="/guides/auth">Read the Authentication Guide</a>
                 </div>
-            </div>
-        </li>
-    </ul>
+            </li>
+            {% endfor -%}
+        </ul>
     </body>
 </html>
