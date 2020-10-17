@@ -13,7 +13,7 @@
             <section class="hero__slogan">
                 <div class="hero__text">
                     <ul class="teaser">
-                        <li class="teaser__item teaser__item--guide {% if teaser.icon %} teaser__item--hasicon{% endif %}">
+                        <li class="teaser__item {% if teaser.icon %} teaser__item--hasicon{% endif %}">
                             <div class="teaser__wrapper">
                                 <div class="teaser__content">
                                     <h1 class="teaser__title">{{ claim | safe }}</h3>
@@ -32,7 +32,7 @@
         </section>
         <ul class="teaser">
             {% for teaser in collections.guide -%}
-            <li class="teaser__item{% if teaser.icon %} teaser__item--hasicon{% endif %}">
+            <li class="teaser__item teaser__item--guide{% if teaser.icon %} teaser__item--hasicon{% endif %}">
                 <div class="teaser__wrapper">
                     <div class="teaser__content">
                         <h3 class="teaser__title">{{ teaser.data.title }}</h3>

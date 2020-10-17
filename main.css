@@ -569,10 +569,10 @@ a {
 .teaser__item:nth-child(even) {
   background: #f4f8f9;
 }
-.teaser__item:nth-child(even) .not(.teaser__item--guides) .teaser__wrapper {
+.teaser__item:nth-child(even):not(.teaser__item--guide) .teaser__wrapper {
   flex-direction: row-reverse;
 }
-.teaser__item:nth-child(even) .not(.teaser__item--guides) .teaser__content {
+.teaser__item:nth-child(even):not(.teaser__item--guide) .teaser__content {
   padding: 1rem 1rem 1rem 5%;
 }
 .teaser__content {
@@ -598,7 +598,7 @@ a {
   color: #fff;
 }
 .teaser__icon {
-  flex: 0 0 30%;
+  flex: 0 0 25%;
   padding: 1rem;
   align-items: flex-start;
   display: flex;
