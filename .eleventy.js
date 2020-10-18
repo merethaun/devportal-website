@@ -169,7 +169,7 @@ module.exports = function (eleventyConfig) {
         return productVersionPage;
     });
     eleventyConfig.addCollection('apiVersions', function (collection) {
-        return apiVersionPage
+        return apiVersionPage;
     });
 
 
