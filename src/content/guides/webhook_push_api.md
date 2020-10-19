@@ -1,18 +1,18 @@
 ---
 layout: pages/guide.njk
-pageTitle: Webhook Push API 
+pageTitle: Media Pool Webhook Push API 
 description: Connect your application with MediaPool events
 teaserText: "Described in this document are the so-called Webhooks, which can inform third-party applications about modifications to assets in the Media Pool. The basic idea is the following: Third-party applications is notified of changes to assets in near real time, rather than having to perform cyclical scans of the entire inventory to identify such changes."
 tags: ['guide']
 eleventyNavigation:
     parent: "Guides"
     key: "auth"
-    title: "Webhook Push API"
+    title: "Media Pool Webhook Push API"
     excerpt: "Connect your application with MediaPool events"
     order: -1
 permalink: "guides/webhook-push-api/"
 bodyClass: "guide"
-title: "Webhook Push API"
+title: "Media Pool Webhook Push API"
 ---
 
 ##  Introduction and Objectives
