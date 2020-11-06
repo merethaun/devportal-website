@@ -28,3 +28,17 @@
         </main>
     </body>
 </html>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-3128286-9"></script>
+<script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     
+     //gtag('set', 'dimension1', <Name der ausgewählten API>);
+     gtag('set', 'dimension2', "{{ title }}");
+     
+     gtag('config', 'UA-3128286-9');
+     
+</script>
