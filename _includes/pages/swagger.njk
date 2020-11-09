@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{{ pageTitle }}</title>
+        <title>{{ displayName }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% include 'components/favicons.njk' %}
         <link rel="stylesheet" href="/main.css">
@@ -84,6 +84,18 @@
             } else {
               console.log("Your browser does not support Web Storage");
             } 
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3128286-9"></script>
+        <script>
+             window.dataLayer = window.dataLayer || [];
+             function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
+
+             gtag('set', 'dimension1', "{{ displayName }}");
+             
+             gtag('config', 'UA-3128286-9');
+
         </script>
     </body>
 </html>
