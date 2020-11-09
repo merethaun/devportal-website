@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Brandmaker Dev Portal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#f95b02">
+<meta name="msapplication-TileColor" content="#0c0f28">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="rMB12-YRyfvSNc_gvIcO_1I5X1zE8N1lzfUQj2Oj-Pg" />
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3128286-9"></script>
+        <script>
+             window.dataLayer = window.dataLayer || [];
+             function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
+
+             //gtag('set', 'dimension1', <Name der ausgewählten API>);
+             //gtag('set', 'dimension2', "");
+
+             gtag('config', 'UA-3128286-9');
+
+        </script>
+
+
+        <link rel="stylesheet" href="/main.css">
+    </head>
+    <body class="home">
+        <!--- topbar with navigation -->
+<header class="topbar">
+    <a class="hero__logolink" href="/">
+        <img src="/assets/bm_logo.svg" alt="Logo Brandmaker">
+    </a>
+    <nav class="mainnav">
+        
+        
+        <ul class="mainnav__list__main">
+            <!--- eleventy navigation --><li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="/api/">API</a><ul class="mainnav__list">
+                        <!--- only first layer -->
+                            <a class="mainnav__listitemlink" href="/api/JobManager/">
+                                <span class="mainnav__listitemlinktitle">Job Manager</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Central Platform for Collaboration</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/MAPS/">
+                                <span class="mainnav__listitemlinktitle">Marketing Planner</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Say bye to confusing spreadsheets</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/MediaPool/">
+                                <span class="mainnav__listitemlinktitle">Media Pool</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Single source of truth</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/Web-to-Publish/">
+                                <span class="mainnav__listitemlinktitle">Web-to-Publish</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Brand Management worldwide</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/WebCacheCore/">
+                                <span class="mainnav__listitemlinktitle">WebCache Core</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">WebCache Core is the central server side application for SEW and MPM</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/WebCacheEngage/">
+                                <span class="mainnav__listitemlinktitle">WebCache Engage</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">WebCache Engage is the central server side application for SEW and MPM</span>
+                                </a>
+                        </ul></li><li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="/guides/">Guides</a><ul class="mainnav__list">
+                        <!--- only first layer -->
+                            <a class="mainnav__listitemlink" href="/guides/auth/">
+                                <span class="mainnav__listitemlinktitle">Authentication</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">How to authenticate</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/guides/webhook-push-api/">
+                                <span class="mainnav__listitemlinktitle">Media Pool Webhook Push API</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Connect your application with MediaPool events</span>
+                                </a>
+                        </ul></li><!--- manually included link to GitHub -->
+            <li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="https://github.com/brandmaker" target="_blank">GitHub</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+        <section class="hero">
+            <section class="hero__slogan">
+                <div class="hero__text">
+                    <h1 class="hero__headline">Discover Our <a href="api">APIs</a> to Unleash Your Marketing Superpowers!</h1>
+                    <p class="hero__p">A farewell to isolated solutions – Leveraging APIs, you can quickly and flexibly integrate the BrandMaker solution into your marketing and technology stack. This way, functionalities are easily configurable according to your needs.</p>
+                    <!-- <p class="hero__p hero__p--strong"></p> -->
+                    
+                        <a class="cta" href="/api">Discover Our APIs</a>
+                    
+                </div>
+            </section>
+        </section>
+        <ul class="teaser">
+        <li class="teaser__item">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Media Pool</h3>
+                    <div class="teaser__contenttext">
+                        Media Pool delivers a central place to store and manage digital assets in any format, for any device, and for any purpose. Within our BrandMaker marketing stack, Media Pool can be used in conjunction with every other module.
+                    </div>
+                    <a class="cta cta--teaser" href="/api/MediaPool">Discover Media Pool API</a>
+                </div>
+                
+                    <div class="teaser__icon">
+                        <img src="/assets/logo_mediapool.svg" alt="Logo Media Pool">
+                    </div>
+                
+            </div>
+        </li>
+        <li class="teaser__item">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Web-to-Publish</h3>
+                    <div class="teaser__contenttext">
+                        Web-to-Publish enables the CD compliant design, adaption, and localization of marketing assets, such as advertisements, brochures, business cards, or posters, without using special applications.
+                    </div>
+                    <a class="cta cta--teaser" href="/api/Web-to-Publish">Discover Web-to-Publish API</a>
+                </div>
+                
+                    <div class="teaser__icon">
+                        <img src="/assets/logo_brandportal.svg" alt="Logo Web-to-Publish">
+                    </div>
+                
+            </div>
+        </li>
+        <li class="teaser__item">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Job Manager</h3>
+                    <div class="teaser__contenttext">
+                        Job Manager streamlines project management and collaboration, with all jobs and workflows transparently managed, controlled, and processed – no matter whether marketing projects, budget releases or purchase orders.
+                    </div>
+                    <a class="cta cta--teaser" href="/api/JobManager">Discover Job Manager API</a>
+                </div>
+                
+                    <div class="teaser__icon">
+                        <img src="/assets/logo_jobmanager.svg" alt="Logo Job Manager">
+                    </div>
+                
+            </div>
+        </li>
+        <li class="teaser__item">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Marketing Planner</h3>
+                    <div class="teaser__contenttext">
+                        With BrandMaker Marketing Planner, you gain full visibility and control over all campaigns, financial planning, and performance measurement. It thus provides a comprehensive platform for all stakeholders.
+                    </div>
+                    <a class="cta cta--teaser" href="/api/MAPS">Discover Marketing Planner API</a>
+                </div>
+                
+                    <div class="teaser__icon">
+                        <img src="/assets/logo_marketingplanner.svg" alt="Logo Marketing Planner">
+                    </div>
+                
+            </div>
+        </li>
+        </ul>
+    </body>
+</html>

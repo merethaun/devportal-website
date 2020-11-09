@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Brandmaker Dev Portal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#f95b02">
+<meta name="msapplication-TileColor" content="#0c0f28">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="rMB12-YRyfvSNc_gvIcO_1I5X1zE8N1lzfUQj2Oj-Pg" />
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3128286-9"></script>
+        <script>
+             window.dataLayer = window.dataLayer || [];
+             function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
+
+             //gtag('set', 'dimension1', <Name der ausgewählten API>);
+             //gtag('set', 'dimension2', "");
+
+             gtag('config', 'UA-3128286-9');
+
+        </script>
+
+
+        <link rel="stylesheet" href="/main.css">
+    </head>
+    <body class="inner">
+        <!--- topbar with navigation -->
+<header class="topbar">
+    <a class="hero__logolink" href="/">
+        <img src="/assets/bm_logo.svg" alt="Logo Brandmaker">
+    </a>
+    <nav class="mainnav">
+        
+        
+        <ul class="mainnav__list__main">
+            <!--- eleventy navigation --><li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="/api/">API</a><ul class="mainnav__list">
+                        <!--- only first layer -->
+                            <a class="mainnav__listitemlink" href="/api/JobManager/">
+                                <span class="mainnav__listitemlinktitle">Job Manager</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Central Platform for Collaboration</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/MAPS/">
+                                <span class="mainnav__listitemlinktitle">Marketing Planner</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Say bye to confusing spreadsheets</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/MediaPool/">
+                                <span class="mainnav__listitemlinktitle">Media Pool</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Single source of truth</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/Web-to-Publish/">
+                                <span class="mainnav__listitemlinktitle">Web-to-Publish</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Brand Management worldwide</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/WebCacheCore/">
+                                <span class="mainnav__listitemlinktitle">WebCache Core</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">WebCache Core is the central server side application for SEW and MPM</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/WebCacheEngage/">
+                                <span class="mainnav__listitemlinktitle">WebCache Engage</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">WebCache Engage is the central server side application for SEW and MPM</span>
+                                </a>
+                        </ul></li><li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="/guides/">Guides</a><ul class="mainnav__list">
+                        <!--- only first layer -->
+                            <a class="mainnav__listitemlink" href="/guides/auth/">
+                                <span class="mainnav__listitemlinktitle">Authentication</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">How to authenticate</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/guides/webhook-push-api/">
+                                <span class="mainnav__listitemlinktitle">Media Pool Webhook Push API</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Connect your application with MediaPool events</span>
+                                </a>
+                        </ul></li><!--- manually included link to GitHub -->
+            <li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="https://github.com/brandmaker" target="_blank">GitHub</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+        <section class="hero">
+            <section class="hero__slogan">
+                <div class="hero__text">
+                    <ul class="teaser">
+                        <li class="teaser__item">
+                            <div class="teaser__wrapper">
+                                <div class="teaser__content">
+                                    <h1 class="teaser__title">Discover<br>our APIs</h3>
+                                    <div class="teaser__contenttext">
+                                        Avoid annoying adaptation processes in the future and create a seamless technology landscape. The provided APIs not only enable flexible and fast integration of your systems and plugins, but also provide creative scope for extensions.
+                                    </div>
+                                </div>
+                                <div class="teaser__icon">
+                                    <img src="/assets/Zahnrad.svg" alt="Illustration API">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <ul class="teaser">
+        <li class="teaser__item">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Media Pool</h3>
+                    <div class="teaser__contenttext">
+                        <p>Media Pool delivers a central place to store and manage digital assets in any format, for any device, and for any purpose.</p>
+<p>Diverse assets, such as files, videos, and images, can be imported, viewed, downloaded, shared, and deleted by the user. The management of assets enables versioning, tagging, grouping, and editing of asset properties. With the help of the integrated search function, individual, and preconfigured search queries can be carried out, which additionally utilizes AI-based image tagging. Digital rights give internal and external team members role-based access to your digital library. Additionally, version and license management ensure the use of only current and valid content.</p>
+<p>Media Pool can be used in conjunction with other BrandMaker modules for example as a repository for the Brand Management Portal or creating content organized in the Marketing Planner. It can also be integrated with Marketing Data Hub, Job Manager, Reporting Center, and Marketing Shop.</p>
+
+                    </div>
+                    <a class="cta cta--teaser" href="/api/MediaPool">Discover Media Pool API</a>
+                </div>
+                
+                    <div class="teaser__icon">
+                        <img src="/assets/logo_mediapool.svg" alt="Logo Media Pool">
+                    </div>
+                
+            </div>
+        </li>
+        <li class="teaser__item">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Web-to-Publish</h3>
+                    <div class="teaser__contenttext">
+                        <p>Web-to-Publish enables the CD compliant design, adaption, and localization of marketing assets, such as advertisements, brochures, business cards, or posters, without using special applications.</p>
+<p>Asset templates can be provided centrally by the administrator in INDD or HTML format and then adapted by the user within the framework of predefined rules, depending on the user profile. The customizing of different assets is supported by testing measures and predefined process steps. To further simplify the creation process, the automatic import of assets, as well as the automatic creation of web and print assets in various formats, is possible.</p>
+<p>Web-to-Publish supports Adobe InDesign. Within our BrandMaker marketing stack, it can be integrated with Media Pool, for example, as a data source, and Marketing Planner, Marketing Shop, Job Manager, Marketing Data Hub, and Review Manager.</p>
+
+                    </div>
+                    <a class="cta cta--teaser" href="/api/Web-to-Publish">Discover Web-to-Publish API</a>
+                </div>
+                
+                    <div class="teaser__icon">
+                        <img src="/assets/logo_brandportal.svg" alt="Logo Web-to-Publish">
+                    </div>
+                
+            </div>
+        </li>
+        <li class="teaser__item">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Job Manager</h3>
+                    <div class="teaser__contenttext">
+                        <p>Job Manager streamlines project management and collaboration, with all jobs and workflows transparently managed, controlled, and processed – no matter whether marketing projects, budget releases or purchase orders.</p>
+<p>By using Kanban, Gantt, or list views, the user gets a real-time and accurate overview of current jobs, including a complete history and audit trail of changes. Users can create, edit, forward, and close a job. Every job can be directly linked with attachments and provided with all relevant information, such as duration, responsibilities, and sub-jobs. Workflows define process steps and schedules of a job. They can be designed individually and used as “project blueprints”. The integrated BPMN-based workflow modeler also enables the mapping of complex workflows – also graphically. All areas of the Job Manager are administered by a role-based rights management. Job Manager uses a comprehensive role-based rights management system to ensure accountability and security.</p>
+<p>Job Manager enables both the import of job information and the export of jobs as XML files according to filter criteria. Job Manager can be integrated with Web-to-Publish, Media Pool, Marketing Planner, and Review Manager.</p>
+
+                    </div>
+                    <a class="cta cta--teaser" href="/api/JobManager">Discover Job Manager API</a>
+                </div>
+                
+                    <div class="teaser__icon">
+                        <img src="/assets/logo_jobmanager.svg" alt="Logo Job Manager">
+                    </div>
+                
+            </div>
+        </li>
+        <li class="teaser__item">
+            <div class="teaser__wrapper">
+                <div class="teaser__content">
+                    <h3 class="teaser__title">Marketing Planner</h3>
+                    <div class="teaser__contenttext">
+                        <p>With BrandMaker Marketing Planner, you gain full visibility and control over all campaigns, financial planning, and performance measurement. It thus provides a comprehensive platform for all stakeholders.</p>
+<p>Marketing planner enables the planning and budgeting of all marketing activities up to single tasks. Planned, targeted, committed, and actual budgets can be set using the desired granularity and currency. Additionally, all relevant information such as content, purchase orders, invoices, KPIs, attachments, and responsible persons, who are automatically informed, can be defined for each element. By integrating formulas, automated calculations, for example, target/actual comparisons, can be carried out. Utilizing templates and filters, reports, and graphical analysis can be generated according to the user's needs. Role-based rights management ensures visibility, as well as the editing of elements.</p>
+<p>Budget data, invoices, etc. can be imported directly into the Marketing Planner. The export of data in different file formats is also possible. Within BrandMaker’s marketing stack, Marketing Planner can be integrated with Media Pool, Web-to-Publish, and Job Manager.</p>
+
+                    </div>
+                    <a class="cta cta--teaser" href="/api/MAPS">Discover Marketing Planner API</a>
+                </div>
+                
+                    <div class="teaser__icon">
+                        <img src="/assets/logo_marketingplanner.svg" alt="Logo Marketing Planner">
+                    </div>
+                
+            </div>
+        </li>
+        </ul>
+    </body>
+</html>

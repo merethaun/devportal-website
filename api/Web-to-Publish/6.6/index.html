@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#f95b02">
+<meta name="msapplication-TileColor" content="#0c0f28">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="rMB12-YRyfvSNc_gvIcO_1I5X1zE8N1lzfUQj2Oj-Pg" />
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3128286-9"></script>
+        <script>
+             window.dataLayer = window.dataLayer || [];
+             function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
+
+             //gtag('set', 'dimension1', <Name der ausgewählten API>);
+             //gtag('set', 'dimension2', "");
+
+             gtag('config', 'UA-3128286-9');
+
+        </script>
+
+
+  <script>
+    // Check browser support
+    var lastUsedApiVersion = "6.4.1.0";//6.6.1.0";
+    if ((typeof(Storage) !== "undefined") && (localStorage.getItem("Web-to-Publish_6.6_used_apiVersion"))) {
+      lastUsedApiVersion =  localStorage.getItem("Web-to-Publish_6.6_used_apiVersion");  
+    }
+    
+    var request = new XMLHttpRequest();
+    request.open("GET","./apiVersions.json", false);
+    request.send(null);
+    var jsonData = JSON.parse(request.responseText);
+    lastUsedApiVersion = jsonData.apiVersions.includes(lastUsedApiVersion) ? lastUsedApiVersion : "6.6.1.0"
+    window.location.href = window.location.href + lastUsedApiVersion;
+  </script>
+</head>
+<body>
+  
+</body>
+
+</html>

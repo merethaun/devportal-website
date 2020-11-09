@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Media Pool Webhook Push API</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#f95b02">
+<meta name="msapplication-TileColor" content="#0c0f28">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="rMB12-YRyfvSNc_gvIcO_1I5X1zE8N1lzfUQj2Oj-Pg" />
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3128286-9"></script>
+        <script>
+             window.dataLayer = window.dataLayer || [];
+             function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
+
+             //gtag('set', 'dimension1', <Name der ausgewählten API>);
+             //gtag('set', 'dimension2', "Media Pool Webhook Push API");
+
+             gtag('config', 'UA-3128286-9');
+
+        </script>
+
+
+        <link rel="stylesheet" href="/main.css">
+        <link rel="stylesheet" type="text/css" href="../../../../swagger/swagger-ui.css?v=2" >
+    </head>
+    <body class="guide">
+        <!--- topbar with navigation -->
+<header class="topbar">
+    <a class="hero__logolink" href="/">
+        <img src="/assets/bm_logo.svg" alt="Logo Brandmaker">
+    </a>
+    <nav class="mainnav">
+        
+        
+        <ul class="mainnav__list__main">
+            <!--- eleventy navigation --><li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="/api/">API</a><ul class="mainnav__list">
+                        <!--- only first layer -->
+                            <a class="mainnav__listitemlink" href="/api/JobManager/">
+                                <span class="mainnav__listitemlinktitle">Job Manager</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Central Platform for Collaboration</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/MAPS/">
+                                <span class="mainnav__listitemlinktitle">Marketing Planner</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Say bye to confusing spreadsheets</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/MediaPool/">
+                                <span class="mainnav__listitemlinktitle">Media Pool</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Single source of truth</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/Web-to-Publish/">
+                                <span class="mainnav__listitemlinktitle">Web-to-Publish</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Brand Management worldwide</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/WebCacheCore/">
+                                <span class="mainnav__listitemlinktitle">WebCache Core</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">WebCache Core is the central server side application for SEW and MPM</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/api/WebCacheEngage/">
+                                <span class="mainnav__listitemlinktitle">WebCache Engage</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">WebCache Engage is the central server side application for SEW and MPM</span>
+                                </a>
+                        </ul></li><li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="/guides/">Guides</a><ul class="mainnav__list">
+                        <!--- only first layer -->
+                            <a class="mainnav__listitemlink" href="/guides/auth/">
+                                <span class="mainnav__listitemlinktitle">Authentication</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">How to authenticate</span>
+                                </a>
+                        
+                            <a class="mainnav__listitemlink" href="/guides/webhook-push-api/">
+                                <span class="mainnav__listitemlinktitle">Media Pool Webhook Push API</span>
+                                    <span class="mainnav__listitemlinktitle mainnav__listitemlinktitle--sub">Connect your application with MediaPool events</span>
+                                </a>
+                        </ul></li><!--- manually included link to GitHub -->
+            <li class="mainnav__listitem">
+                <a class="mainnav__listitemlink" href="https://github.com/brandmaker" target="_blank">GitHub</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+        <section class="hero">
+            <header class="hero__header">
+                <h1 class="hero__headline">Media Pool Webhook Push API</h1> 
+                <div class="hero__description">
+                    Connect your application with MediaPool events
+                </div>
+            </header>
+        </section>
+        <main class="guide__mainlayout">
+            <aside class="guide__aside">
+                <nav class="toc" role="navigation" aria-labelledby="navToc"><h2 class="toc__heading" id="navTOC">Table of contents</h2><ol class="toc__list"><li class="toc__list-item"><a class="toc__list-item-anchor" href="#introduction-and-objectives">Introduction and Objectives</a><ol class="toc__list"><li class="toc__list-item"><a class="toc__list-item-anchor" href="#task-definition">Task Definition</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#boundary-conditions">Boundary Conditions</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#defining-the-context">Defining the Context</a>		</li></ol>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#structure">Structure</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#description-of-the-components-and-their-function">Description of the Components and Their Function</a><ol class="toc__list"><li class="toc__list-item"><a class="toc__list-item-anchor" href="#media-pool">Media Pool</a><ol class="toc__list"><li class="toc__list-item"><a class="toc__list-item-anchor" href="#list-of-asset-related-events">List of Asset Related Events</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#list-of-events-showing-changes-in-the-categories">List of Events Showing Changes in the Categories</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#webhook-consumer">Webhook Consumer</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#structure-of-transmitted-data">Structure of Transmitted Data</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#implementation-recommendations">Implementation Recommendations</a>		</li></ol>		</li></ol>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#relevant-rest-apis-for-synchronization">Relevant REST APIs for synchronization</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#test-of-consumer">Test of Consumer</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#loading-an-existing-data-pool">Loading an Existing Data Pool</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#possible-error-sources">Possible Error Sources</a>		</li>
+<li class="toc__list-item"><a class="toc__list-item-anchor" href="#examples">Examples</a><ol class="toc__list"><li class="toc__list-item"><a class="toc__list-item-anchor" href="#webhook-rest-endpoint">Webhook Rest Endpoint</a>		</li></ol>		</li></ol></nav>
+            </aside>
+            <article class="guide__article">
+                <h2 id="introduction-and-objectives">Introduction and Objectives</h2>
+<p>The BrandMaker Media Pool is increasingly used by its users as a central repository for all types of assets that are also to be used outside the company. The Media Pool is intended to assume the role of a central application that controls the distribution of assets. It is therefore necessary for the Media Pool to provide powerful APIs that enable users to synchronize and keep stored content and third-party applications up to date.</p>
+<h4 id="task-definition">Task Definition</h4>
+<p>In order to deliver assets in the Media Pool to third-party applications, third-party applications must be able to be notified of changes to relevant assets.</p>
+<p>In order to load these assets from the Media Pool, the Media Pool must have APIs for searching and loading metadata and for transferring binary data. This allows users to deploy and keep assets from the Media Pool in their own applications (e.g., CMS, PIM, CRM). In order to achieve the set goals, the Media Pool already provides extensive REST APIs and SOAP APIs. These APIs aren't described in more detail below. Please refer to the existing documentation.</p>
+<p>New and described in this document are the so-called Webhooks, which can inform third-party applications about modifications to assets in the Media Pool. The basic idea is the following: Third-party applications is notified of changes to assets in near real time, rather than having to perform cyclical scans of the entire inventory to identify such changes.</p>
+<p>A very comprehensive description of how Webhooks work can be found at <a href="https://requestbin.com/blog/working-with-webhooks/">https://requestbin.com/blog/working-with-webhooks/</a> and <a href="https://en.wikipedia.org/wiki/Webhook">https://en.wikipedia.org/wiki/Webhook</a>.</p>
+<p>For this purpose, the third-party applications should register at the Media Pool. This registration consists of storing a URL (Webhook) that is called by the BrandMaker system as soon as relevant changes have been made to the asset.</p>
+<p>All actions performed on an asset by users generate an event. When registering the webhook, the administrator can select one or more of these events. Please note the flow chart Figure 1 - Functional overall structure in chapter 2.</p>
+<h4 id="boundary-conditions">Boundary Conditions</h4>
+<p>It is assumed that the reader or developer on the customer side is familiar with technologies such as http, REST and the programming of web services.</p>
+<p>Listed example listings are exemplary created in JAVA, but there is no constraint and no preference for any programming language.</p>
+<p>Furthermore, knowledge of the application and configuration of the BrandMaker Media Pool is required. The developer needs administrator access to the Media Pool to be able to make the necessary settings.</p>
+<p>In order to retrieve and save data from the Media Pool automatically using a third-party system (e.g. CMS), knowledge of the corresponding development environments and APIs of the third-party system is required. This knowledge is also not covered in this documentation. The third-party system is always represented as a black box in this context.</p>
+<h4 id="defining-the-context">Defining the Context</h4>
+<p>The offered interfaces are used for near real-time synchronization of the data in the Media Pool with third-party applications. Other purposes are not supported.</p>
+<p><strong>Technical context</strong></p>
+<p>From the point of view of the Media Pool, delivery to a third-party system is referred to as publishing. When the user specifies that an asset is to be published, the asset becomes available for transfer to a third-party system.</p>
+<p>Assets can be published to different systems in parallel. Such an external system is referred to as a channel. A channel can be your own CMS, a social media platform, a blog, or even an external system for print preparation.</p>
+<p>In order for the third-party application to be able to download the asset in the correct format, one of the available output formats must be specified per channel. For this purpose, a corresponding rendering scheme must be defined in the Media Pool and stored with the channel.</p>
+<p>The publishing process therefore includes the following points:</p>
+<ul>
+<li>the selection of the asset</li>
+<li>the definition of one or more channels</li>
+<li>the definition of the rendering scheme</li>
+<li>the determination of the publication period</li>
+</ul>
+<p>The following requirements must be met for third-party applications to be notified via webhook of changes to an asset:</p>
+<ul>
+<li>
+<p>The asset has been published.</p>
+</li>
+<li>
+<p>A channel is defined.</p>
+</li>
+<li>
+<p>A publication period is defined for the asset and the change to the asset takes place within the publication period.</p>
+</li>
+<li>
+<p>A rendering scheme is specified that contains an output format for the asset's file format.</p>
+</li>
+<li>
+<p>A third party application is defined for the channel.</p>
+</li>
+<li>
+<p>A valid URL of the third-party application has been filled in.</p>
+</li>
+<li>
+<p>The events for which the third-party application is to be notified are defined.</p>
+</li>
+</ul>
+<p>With these settings, the webhook sends notifications to the third-party application as soon as one of the changes registered as an event is made to the asset.</p>
+<p>The third-party application that receives the notification can then respond by, for example, loading the new version of the asset or resetting the asset's title.</p>
+<h2 id="structure">Structure</h2>
+<p>A complete system consisting of Media Pool, third-party application and its coupling as well as the necessary interfaces can look like the following example:</p>
+<p><img src="/assets/guides/webhooks-mediapool/RackMultipart20201017-4-qdsq0p_html_44f838540e6847ef.png" alt=""></p>
+<p><em>Figure 1 - Functional overall structure</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Media Pool</td>
+<td>BrandMaker Media Pool Instance</td>
+</tr>
+<tr>
+<td>Third party application</td>
+<td>The third-party application that is to receive the released, published assets from the Media Pool</td>
+</tr>
+<tr>
+<td>Media Pool REST API</td>
+<td>API to retrieve data from the Media Pool</td>
+</tr>
+<tr>
+<td>Webhook-Consumer</td>
+<td>The REST endpoint to create within the third-party application that receives the notifications</td>
+</tr>
+</tbody>
+</table>
+<h2 id="description-of-the-components-and-their-function">Description of the Components and Their Function</h2>
+<h3 id="media-pool">Media Pool</h3>
+<p>The Media Pool is the active component, which as the leading system can supply third-party applications with data and content. To do this, the Media Pool informs the third-party application via webhook about events that have occurred in the system. The following events can be assigned to a webhook.</p>
+<h4 id="list-of-asset-related-events">List of Asset Related Events</h4>
+<p>The following events report a direct change to an asset:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Event</th>
+<th>Data submitted</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>PUBLISHED</td>
+<td>ID, channel ID, rendering scheme, startDate, endDate</td>
+<td>An asset has been published to one of the channels. The event fires separateley for each affected channel.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>PUBLISHING_START</td>
+<td>ID, channel ID, rendering scheme, startDate, endDate</td>
+<td>A publishing time has been reached. The event fires as soon as the asset is due to be published on a particular channel.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>PUBLISHING_END</td>
+<td>ID, channel ID, startDate, endDate</td>
+<td>A publishing end date has been reached. The event fires as soon as the asset gets depublished on a particular channel.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>DEPUBLISHED</td>
+<td>ID, channel ID, startDate, endDate</td>
+<td>The asset is manually depublished by the user. This is not the same as &quot;PUBLISHING_END&quot; as in this case the asset is still in a published state but the end of the &quot;To&quot; date has been reached</td>
+</tr>
+<tr>
+<td>8</td>
+<td>METADATA_CHANGED</td>
+<td>ID</td>
+<td>Event fires if ANY metadata has been changed. This includes all custom attributes (aka &quot;free text fields&quot;). Except: Versions, Variants and related assets. This also does NOT INCLUDE changes to the category tree associations. These are treated separately</td>
+</tr>
+<tr>
+<td>9</td>
+<td>VERSION_ADDED</td>
+<td>ID, Version #, channel ID, rendering scheme</td>
+<td>Fires if a new version is added</td>
+</tr>
+<tr>
+<td>10</td>
+<td>VERSION_DELETED</td>
+<td>ID, Version ##</td>
+<td>Fires, if any version is deleted</td>
+</tr>
+<tr>
+<td>11</td>
+<td>VERSION_OFFICIAL</td>
+<td>ID, Version #, channel ID, rendering scheme</td>
+<td>Fires, once a version is set to official</td>
+</tr>
+<tr>
+<td>12</td>
+<td>VERSION_UNOFFICIAL</td>
+<td>ID, Version ##</td>
+<td>Fires, once a version is set to unofficial</td>
+</tr>
+<tr>
+<td>23</td>
+<td>SYNCHRONIZE</td>
+<td></td>
+<td>Send for full sync on manual triggering the web hook. Cannot be selected as automatic triggering event</td>
+</tr>
+<tr>
+<td>24</td>
+<td>TEST</td>
+<td></td>
+<td>Test event which only checks whether the endpoint is listening. Cannot be selected as automatic triggering event</td>
+</tr>
+</tbody>
+</table>
+<p>The numbering of the events is not consecutive. Further events will be added in later versions.</p>
+<p>The most importants events are PUBLISHED, DEPUBLISHED, PUBLISHING_START, PUBLISHING_END, ASSET_REMOVED. These events monitor the publication of assets.</p>
+<p>Please note that the data of an asset is not transmitted to the Webhook (content), only the information about what has changed on an asset. The recipient of the webhook, the consumer, must then decide how this information is processed and how necessary data and content is loaded via the REST API provided by the Media Pool.</p>
+<p>The data transmitted in the webhook is sent to the REST endpoint of the consumer in JSON notation using the POST method.</p>
+<p>The Media pool assumes that no authentication takes place in the webhook. To ensure that the request was sent by the correct instance, the data is signed with the private key of the BrandMaker system and can be verified using the public key of the BrandMaker system. The public key can be requested via an API of the BrandMaker system, please refer to the administration manual of the BrandMaker system. Since the source URL is also contained in the signed data, a positive validation of the signature verifies the source system.</p>
+<h4 id="list-of-events-showing-changes-in-the-categories">List of Events Showing Changes in the Categories</h4>
+<p>General category changes also affect the metadata of an asset. However, since no changes have been made to the assets themselves in the event of a change in the categories, events are not sent for the affected assets, but for the corresponding categories.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Event</th>
+<th>Data submitted</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25</td>
+<td>CATEGORY_MOVE</td>
+<td>ID, Source, Target Category ID</td>
+<td><strong>Attention:</strong> This is actually not a change in the asset, but in the category tree: a sub-category is moved from one parent to another parent. This affects all assets assigned to this sub-category! For sync purposes, where the client is as well synchronizing the category tree, it's important to know about such <em>implicit moves</em> of assets.</td>
+</tr>
+<tr>
+<td>26</td>
+<td>TREE_CHANGED</td>
+<td>no data</td>
+<td>If the above &quot;CATEGORY_...&quot; events cannot be fired due to certain implementation restrictions, the &quot;TREE_CHANGED&quot; event should be used instead whenever a change to the category tree is saved. This will signal the client that it has to sync the entire categroy tree. The current associations may as well need to be resynchronized, as for instance a category has been removed and the according assets have changed.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="webhook-consumer">Webhook Consumer</h4>
+<p>To process the data sent by the Media Pool via webhook, the third-party application must provide a REST endpoint whose URL the user must register and activate in the BrandMaker system.</p>
+<p>Depending on the event that has occurred, different data objects are sent that contain the necessary information for further processing of the event.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Meta data or content of assets are <strong>not</strong> sent!</p>
+</blockquote>
+<p>The URL of the REST endpoint is called by the Media Pool immediately after the corresponding transaction within the Media Pool is completed. Depending on the system load and the number of events that arrive and are to be transferred, this can take a few seconds.</p>
+<p>If an error occurs at the REST end point of the consumer, the Media Pool attempts to resend the event. The repetition rate can be adjusted by the BrandMaker support, please contact the BrandMaker support if necessary. You specify the time interval between two attempts when you register the webhook in Administration.</p>
+<p>If all retries fail, the Webhook is locked and no further notifications are sent. In this case, manual intervention is necessary. This is indicated via the status display of the webhook in the BrandMaker system under <em>&amp;gt; Administration &gt; Media Pool &gt; Webhooks</em>.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>All HTTP response codes outside the range 20x are considered to be faulty. By default, the webhook expects an HTTP response status 202 - Accepted in case of success. Please refer to the implementation recommendations in chapter 3.2.2. Please note that a series of successive errors of the consumer may cause the webhook to be automatically deactivated and must be manually reactivated.</p>
+</blockquote>
+<h4 id="structure-of-transmitted-data">Structure of Transmitted Data</h4>
+<p>In principle, the data sent to the webhook has the following structure:</p>
+<pre class="language-xquery"><code class="language-xquery"><span class="token punctuation">{</span><br>    <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token string">"{\"</span>customerId\<span class="token string">": \"</span>una-nho-eie\<span class="token string">",\"</span>systemId\<span class="token string">": \"</span><span class="token number">821</span>-<span class="token number">574</span>-<span class="token number">160</span>\<span class="token string">",\"</span>baseUrl\<span class="token string">": \"</span>https<span class="token punctuation">:</span><span class="token punctuation">/</span><span class="token punctuation">/</span>is-dev2<span class="token operator">.</span>brandmaker<span class="token operator">.</span>com<span class="token punctuation">/</span>\<span class="token string">",\"</span>events\<span class="token string">": [ { \"</span>assetId\<span class="token string">": \"</span><span class="token number">3467</span>\<span class="token string">", \"</span>eventData\<span class="token string">": [{ \"</span>channelId\<span class="token string">": \"</span>PUBLIC_LINKS\<span class="token string">", \"</span>startDate\<span class="token string">": null, \"</span>endDate\<span class="token string">": null, \"</span>renderingScheme\<span class="token string">": 856}], \"</span>eventType\<span class="token string">": \"</span>PUBLISHED\<span class="token string">", \"</span>eventTime\<span class="token string">": 1552667068052 }]}"</span><span class="token punctuation">,</span><br>    <span class="token string">"signature"</span><span class="token punctuation">:</span> <span class="token string">"sdlk.................fhsfgjhg"</span><br><span class="token punctuation">}</span></code></pre>
+<ul>
+<li>data – contains the actual event data JSON object as a string</li>
+<li>signature – contains the signature of the data element</li>
+</ul>
+<p>In the further course of the document only the decoded part of the data element is considered:</p>
+<pre class="language-xquery"><code class="language-xquery"><span class="token number">1</span>	<span class="token punctuation">{</span><br><span class="token number">2</span>		<span class="token string">"customerId"</span><span class="token punctuation">:</span> <span class="token string">"id"</span><span class="token punctuation">,</span><br><span class="token number">3</span>		<span class="token string">"systemId"</span><span class="token punctuation">:</span> <span class="token string">"id"</span><span class="token punctuation">,</span><br><span class="token number">4</span>		<span class="token string">"baseUrl"</span><span class="token punctuation">:</span> <span class="token string">"url"</span><span class="token punctuation">,</span><br><span class="token number">5</span>		<span class="token string">"events"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><br><span class="token number">6</span>			<span class="token string">"assetId"</span><span class="token punctuation">:</span> <span class="token string">"id"</span><span class="token punctuation">,</span><br><span class="token number">7</span>			<span class="token string">"eventData"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><br><span class="token number">8</span>				<span class="token string">"channelId"</span><span class="token punctuation">:</span> <span class="token string">"PUBLIC_LINKS"</span><span class="token punctuation">,</span><br><span class="token number">9</span>				<span class="token string">"startDate"</span><span class="token punctuation">:</span> null<span class="token punctuation">,</span><br><span class="token number">10</span>				<span class="token string">"endDate"</span><span class="token punctuation">:</span> null<span class="token punctuation">,</span><br><span class="token number">11</span>				<span class="token string">"renderingScheme"</span><span class="token punctuation">:</span> <span class="token string">"id"</span><br><span class="token number">12</span>			<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span><br><span class="token number">13</span>			<span class="token string">"eventType"</span><span class="token punctuation">:</span> <span class="token string">"PUBLISHED"</span><span class="token punctuation">,</span><br><span class="token number">14</span>			<span class="token string">"eventTime"</span><span class="token punctuation">:</span> <span class="token string">"UTC"</span><br><span class="token number">15</span>		<span class="token punctuation">}</span><span class="token punctuation">]</span><br><span class="token number">16</span>	<span class="token punctuation">}</span></code></pre>
+<p>To optimize throughput, several events occurring in succession are combined in the Media Pool in one call. Therefore, the events element contains an array of the events that have occurred.</p>
+<p>The eventData element contains different data depending on the type of event, see the table of events.</p>
+<p>Since the user can publish an asset on several different channels, this element also contains an array with one data object per addressed channel.</p>
+<p><strong>Content of JSON object</strong></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customerId</td>
+<td>Unique customer number in format 111-111-111 (alphanumeric)</td>
+</tr>
+<tr>
+<td>systemID</td>
+<td>Unique System ID in format abc-def-ghi (alphanumeric)</td>
+</tr>
+<tr>
+<td>baseUrl</td>
+<td>Web address of system for API calls by 3rd party application</td>
+</tr>
+<tr>
+<td>assetId</td>
+<td>Asset ID of the affected asset(s) (without prefixed M-)</td>
+</tr>
+<tr>
+<td>channelId</td>
+<td>ID pf publication channel. By default Media Pool has two fixed channels: SHARING and PUBLIC_LINKS. See the Media Pool Administration Manual.</td>
+</tr>
+<tr>
+<td>renderingScheme</td>
+<td>ID of the desired output format of the asset. This is either preset in the channel or specified for each channel when publishing.</td>
+</tr>
+<tr>
+<td>eventType</td>
+<td>Event, see chapter 3.1</td>
+</tr>
+<tr>
+<td>eventTime</td>
+<td>Effective time of the event as UTC time stamp</td>
+</tr>
+</tbody>
+</table>
+<h4 id="implementation-recommendations">Implementation Recommendations</h4>
+<p>In principle, the consumer to be created must have good performance and respond relatively quickly, since the Media Pool only waits a limited time for the response and otherwise classifies the call as faulty (timeout).</p>
+<p>Since several requests can arrive at the same time and these can also arrive for several events, we strongly recommend asynchronous processing in the following schematic steps:</p>
+<ol>
+<li>Acceptance of the request</li>
+<li>Formal validation of the data</li>
+</ol>
+<ul>
+<li>Verification of the signature</li>
+<li>Formatting the Event Object</li>
+<li>Entry in internal queue</li>
+</ul>
+<ol start="3">
+<li>Reply to Media Pool</li>
+</ol>
+<p>Tests have shown that in this way a response is in principle possible within 50-100 milliseconds (JAVA, JMS, Active-MQ).</p>
+<p>An internal queue consumer can then record the actual processing of the events.</p>
+<p><img src="/assets/guides/webhooks-mediapool/RackMultipart20201017-4-qdsq0p_html_5d868841ed9c8d3e.png" alt=""></p>
+<p><em>Figure 2 - Principle sketch webhook consumer</em></p>
+<h2 id="relevant-rest-apis-for-synchronization">Relevant REST APIs for synchronization</h2>
+<p>To retrieve the effective data of an asset from the Media Pool, the Media Pool provides a comprehensive REST API.</p>
+<p>All API endpoints require authentication. This is currently done as Basic Authentication. BrandMaker recommends setting up access to the APIs of a non-personal, technical user whose password is always valid.</p>
+<p>Please note that in one of the next versions of BrandMaker, the authentication of the APIs will be changed centrally to the oAuth2 standard in connection with the BrandMaker Fusion feature set.</p>
+<p>The following REST APIs are of interest in connection with this document:</p>
+<table>
+<thead>
+<tr>
+<th>REST Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AssetSearchRestService</td>
+<td>Search for assets. This is also recommended for pulling required metadata for a specific Asset ID, since the scope of the returned data can be configured via the call.</td>
+</tr>
+<tr>
+<td>FileGenerationTaskRestService</td>
+<td></td>
+</tr>
+<tr>
+<td>DownloadRestService</td>
+<td>These two resources create the appropriate rendering for the contents of an asset. Note that rendering an asset can be time-consuming. For this reason, a task is first created (<em>FileGenerationTask</em>) and this can be queried with the <em>DownloadRestService</em> to see if the asset is rendered in the desired format. The ID of the requested rendering scheme serves as a basis.</td>
+</tr>
+<tr>
+<td>FileResourceRestService</td>
+<td>Provides detailed information about an asset's stored file format.</td>
+</tr>
+<tr>
+<td>AssetResourceVersionRestService</td>
+<td>Detailed information about the versioning of an asset. The resource <em>FileGenerationTaskRestService</em> expects information about the version of the asset to be delivered, which can be determined here.</td>
+</tr>
+</tbody>
+</table>
+<p>Detailed information on the individual resources of the REST API as well as further endpoints can be found within the BrandMaker system under <em>&amp;gt; Administration &gt; System Information &gt; API Descriptions</em>.</p>
+<h2 id="test-of-consumer">Test of Consumer</h2>
+<p>During creation you can test your new webhook consumer via the Media Pool. To do this, create a webhook with the valid address of the consumer. Note that this address must be resolved and must be accessible from outside via the internet. This is usually not the case for your local computer.</p>
+<p>Go to the <em>Test</em> tab in the administration of the webhook and click on the <em>Send Test</em> button:</p>
+<p><img src="/assets/guides/webhooks-mediapool/RackMultipart20201017-4-qdsq0p_html_2957cca6c7de0c06.png" alt=""></p>
+<p>A corresponding event TEST (see chapter 3.1) without user data is sent to your consumer and the return status is stored in the log.</p>
+<p>Please note that in the Media Pool, the events are also generated asynchronously. It is therefore possible that manually triggered events (test, manual trigger) only actually arrive at the consumer after a few seconds, depending on the system load.</p>
+<h2 id="loading-an-existing-data-pool">Loading an Existing Data Pool</h2>
+<p>When your webhook is complete, it receives events for modifications to the assets according to the registration.</p>
+<p>However, this does not apply to assets published before the Webhook was created. To avoid having to republish them all, use the SYNCHRONIZE event, which is sent to all assets that meet the conditions.</p>
+<p>Please note that this sends the corresponding events to your webhook for all assets ever published and currently valid in the system. The events are sent in clusters of multiple assets at once (200 per request). Nevertheless, a high system load is to be expected.</p>
+<p>To do this, go to the <em>Manual Trigger</em> tab in the Webhook's administration dialog:</p>
+<p><img src="/assets/guides/webhooks-mediapool/RackMultipart20201017-4-qdsq0p_html_f6bd7f368a92361e.png" alt=""></p>
+<h2 id="possible-error-sources">Possible Error Sources</h2>
+<p>Im Folgenden werden einige mögliche Symptome und deren mögliche Ursachen als Hilfe bei der Implementierung aufgelistet:</p>
+<p><strong>The request is not received on the target system.</strong></p>
+<ul>
+<li>The Webhook contains an invalid or incorrect URL. <em><strong>Solution</strong></em>: If necessary, correct the URL entered in the BrandMaker system under <em>&amp;gt; Administration &gt; Media Pool &gt; Webhooks</em> for this webhook.</li>
+<li>The BrandMaker system cannot reach the third-party application with the webhook. <em><strong>Solution</strong></em>: Make sure that the third-party application with the webhook is accessible via the Internet. If necessary, check the DNS resolution and the routing.</li>
+</ul>
+<p><strong>The request is received, but returns an http status unequal 20x.</strong></p>
+<ul>
+<li>The format of the data does not correspond to the format expected by the Webhook or there is a fundamental implementation error. <em><strong>Solution</strong></em>: Check and correct your implementation if necessary.</li>
+</ul>
+<p><strong>An event is not sent to the webhook.</strong></p>
+<ul>
+<li>The webhook has not subscribed to the corresponding event. <em><strong>Solution</strong></em>: Check and correct the webhook settings under &gt; <em>Administration &gt; Media Pool &gt; Webhooks</em>.</li>
+<li>The corresponding asset is not published. Please note that only published assets are processed via this API. <em><strong>Solution</strong></em>: Search for the asset in the Media Pool. Check and correct the publication of the asset if necessary.</li>
+</ul>
+<p><strong>The webhook is automatically deactivated.</strong></p>
+<ul>
+<li>Your consumer delivers too many errors in succession. <em><strong>Solution</strong></em>: Check the stability of your implementation, especially in the processing of the various events enabled in the registry.</li>
+</ul>
+<p><strong>Media Pool reports that timeouts occur.</strong></p>
+<ul>
+<li>Processing within the Webhook consumer takes too long. <em><strong>Solution</strong></em>: Check the Webhook consumer and follow the instructions in chapter 3.2.2.</li>
+</ul>
+<p><strong>Modifications to the assets are not sent to the Webhook, even though the corresponding events are set up and the asset is published.</strong></p>
+<ul>
+<li>The specified rendering scheme has changed and does not contain a valid output format for the file format of the asset. <em><strong>Solution</strong></em>: Change the rendering scheme specified for the publication under <em>&amp;gt; Administration &gt; Media Pool &gt; Download &gt; Rendering Scheme</em>. Alternatively, select a different rendering scheme for the asset's publication that includes a suitable output format.</li>
+<li>The specified rendering scheme was deleted. <em><strong>Solution</strong></em>: Select a different rendering scheme for the asset's publication that includes a suitable output format.
+<strong>An asset is automatically reported as DEPUBLISHED before its expiration date and without user interaction.</strong></li>
+<li>The asset has been moved to the VDB recycle bin. In this case the publication of the asset will be automatically stopped from version 6.6 on.
+<strong>The webhook consumer cannot access the Media Pool API.</strong></li>
+<li>No physical connection can be established. <em><strong>Solution</strong></em>: Check the network connections of your server and the BrandMaker system.
+<strong>The Media Pool API returns an HTTP status 40x.</strong></li>
+<li>The technical user with which the API authenticates itself to the BrandMaker system is invalid or does not have sufficient rights. <em><strong>Solution</strong></em>: Check the user account of the technical user under &gt; Administration &gt; Users &amp; Groups &gt; Users.</li>
+<li>Information about the requested resource (asset, rendering scheme, file information, ...) is not available. <em><strong>Solution</strong></em>: Please refer to the corresponding API documentation.</li>
+</ul>
+<p>For further possible causes of errors in connection with the Media Pool API, please refer to the corresponding documentation of the individual REST endpoints used.</p>
+<h2 id="examples">Examples</h2>
+<h4 id="webhook-rest-endpoint">Webhook Rest Endpoint</h4>
+<p>Below is an example implementation of a REST endpoint based on Java 8, Apache Sling 11, and JAX-R:</p>
+<pre class="language-java"><code class="language-java"><span class="token comment">/**<br> *<br> * &lt;p>Web Hook which retrieves events generated by Media Pool in order to sync assets between Media Pool and WebCache.<br> * &lt;p>This service is not doing anything else than making formal checks on the request and then queue the request to the importer queue!<br> * &lt;p>As this API does not require any login, it is crucial to validate the request signature!<br> *<br> * @author axel.amthor@brandmaker.com<br> * @copyright BrandMaker GmbH, Karlsruhe, 2019<br> */</span><br><span class="token annotation punctuation">@Service</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token class-name">MediaPoolWebHook</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// service on interface in order to hide class specific implementations!</span><br><span class="token annotation punctuation">@Component</span><span class="token punctuation">(</span><br>        label <span class="token operator">=</span> <span class="token string">"MediaPool WebHook Service"</span><span class="token punctuation">,</span><br>        description <span class="token operator">=</span> <span class="token string">"Captures requests with Media Pool Sync Events"</span><span class="token punctuation">,</span><br>        metatype <span class="token operator">=</span> <span class="token boolean">true</span><br><span class="token punctuation">)</span><br><span class="token annotation punctuation">@Properties</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>	<span class="token annotation punctuation">@Property</span><span class="token punctuation">(</span><br>			label<span class="token operator">=</span><span class="token string">"WebHook job creation"</span><span class="token punctuation">,</span><br>    		description<span class="token operator">=</span><span class="token string">"Whether sync jobs should be created if an event is passed in. Defaults to false (!)"</span><span class="token punctuation">,</span><br>			name<span class="token operator">=</span><span class="token string">"MediaPoolWebHook.Jobcreation.active"</span><span class="token punctuation">,</span><br>			boolValue <span class="token operator">=</span> <span class="token boolean">false</span><br>			<span class="token punctuation">)</span><span class="token punctuation">,</span><br>	<span class="token annotation punctuation">@Property</span><span class="token punctuation">(</span><br>			label<span class="token operator">=</span><span class="token string">"WebHook service active"</span><span class="token punctuation">,</span><br>    		description<span class="token operator">=</span><span class="token string">"Whether WebHook Service is activated. Defaults to false (!)"</span><span class="token punctuation">,</span><br>			name<span class="token operator">=</span><span class="token string">"MediaPoolWebHook.Service.active"</span><span class="token punctuation">,</span><br>			boolValue <span class="token operator">=</span> <span class="token boolean">false</span><br>			<span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><br><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MediaPoolWebHookImpl</span> <span class="token keyword">implements</span> <span class="token class-name">MediaPoolWebHook</span><br><span class="token punctuation">{</span><br><br>	<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> DEBUG <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span><br><br>	<span class="token comment">/** The Constant LOGGER. */</span><br>    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token class-name">Logger</span> LOGGER <span class="token operator">=</span> <span class="token class-name">LoggerFactory</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token class-name">MediaPoolWebHook</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    <span class="token comment">/** Whether this service should be activated or not */</span><br>    <span class="token keyword">private</span> <span class="token keyword">boolean</span> serviceActive <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><br><br>    <span class="token comment">/** false means requests are accepted but not queued */</span><br>    <span class="token keyword">private</span> <span class="token keyword">boolean</span> queueActivated <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><br><br>	<span class="token annotation punctuation">@Reference</span><br>	<span class="token class-name">ReaderService</span> readerService<span class="token punctuation">;</span><br><br>	<span class="token annotation punctuation">@Reference</span><br>	<span class="token class-name">WebCacheTenantProvider</span> tenantProvider<span class="token punctuation">;</span><br><br>	<span class="token annotation punctuation">@Reference</span><br>	<span class="token class-name">ResourceResolverHelper</span> resourceResolverHelper<span class="token punctuation">;</span><br><br>	<span class="token annotation punctuation">@Reference</span><br>   <span class="token keyword">private</span> <span class="token class-name">JobManager</span> jobManager<span class="token punctuation">;</span><br><br>	<span class="token comment">/**<br>	 * Activate this service component and init global stuff.<br>	 *<br>	 * @param bundleContext<br>	 * @param properties<br>	 */</span><br>	<span class="token annotation punctuation">@Activate</span><br>	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">activate</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">BundleContext</span> bundleContext<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> properties<span class="token punctuation">)</span><br>	<span class="token punctuation">{</span><br>		serviceActive  <span class="token operator">=</span> <span class="token class-name">PropertiesUtil</span><span class="token punctuation">.</span><span class="token function">toBoolean</span><span class="token punctuation">(</span>properties<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"MediaPoolWebHook.Service.active"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> serviceActive<span class="token punctuation">)</span><span class="token punctuation">;</span><br>		queueActivated  <span class="token operator">=</span> <span class="token class-name">PropertiesUtil</span><span class="token punctuation">.</span><span class="token function">toBoolean</span><span class="token punctuation">(</span>properties<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"MediaPoolWebHook.Jobcreation.active"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> queueActivated<span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>		LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"MediaPool WebHook Service started"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>	<span class="token punctuation">}</span><br><br>	<span class="token comment">/* (non-Javadoc)<br>	 * @see com.brandmaker.webcache.core.asset.jaxrs.mediapool.MediaPoolWebHook#mpWebHook(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.String)<br>	 */</span><br>	<span class="token annotation punctuation">@Override</span><br>	<span class="token keyword">public</span> <span class="token class-name">Response</span> <span class="token function">mpWebHook</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">String</span> requestBody<span class="token punctuation">)</span><br>	<span class="token punctuation">{</span><br>		<span class="token keyword">long</span> start <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<br>		<span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>serviceActive <span class="token punctuation">)</span> <span class="token punctuation">{</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"Service inactive"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token class-name">Status</span><span class="token punctuation">.</span>NOT_IMPLEMENTED<span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">entity</span><span class="token punctuation">(</span> <span class="token string">"{\"error\": \"This service is inactive. Please check WebCache Configuration.\" } "</span> <span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<span class="token punctuation">}</span><br><br>		LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"Start processing webhook request from "</span> <span class="token operator">+</span> request<span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token class-name">WebCacheConstants</span><span class="token punctuation">.</span>EFFECTIVE_CLIENTIP_ADDRESS_HEADER<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<br>		<span class="token class-name">JSONObject</span> eventObject <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JSONObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<span class="token class-name">JSONArray</span> responseArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JSONArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> copyProps <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token class-name">MediaPoolEvent</span><span class="token punctuation">.</span>PROP_CUSTOMERID<span class="token punctuation">,</span> <span class="token class-name">MediaPoolEvent</span><span class="token punctuation">.</span>PROP_SYSTEMID<span class="token punctuation">,</span> <span class="token class-name">MediaPoolEvent</span><span class="token punctuation">.</span>PROP_BASEURL <span class="token punctuation">}</span><span class="token punctuation">;</span><br>		<br>		<span class="token keyword">try</span><br>		<span class="token punctuation">{</span><br>			<span class="token class-name">JSONObject</span> requestObject <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JSONObject</span><span class="token punctuation">(</span>requestBody<span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<br>			<span class="token class-name">String</span> data <span class="token operator">=</span> requestObject<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token class-name">String</span> signature <span class="token operator">=</span> requestObject<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"signature"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<br>			<span class="token comment">/*<br>			 * validate signature<br>			 */</span><br>			<span class="token comment">// implementation specific!</span><br><br>			<span class="token comment">/*<br>			 * parse data property and parse the inner structure as JSON<br>			 */</span><br>			<span class="token class-name">JSONObject</span> dataObject <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JSONObject</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token class-name">JSONArray</span> eventArray <span class="token operator">=</span> dataObject<span class="token punctuation">.</span><span class="token function">getJSONArray</span><span class="token punctuation">(</span><span class="token string">"events"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<br>			<span class="token keyword">if</span> <span class="token punctuation">(</span> DEBUG <span class="token punctuation">)</span> LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"decoded data: "</span> <span class="token operator">+</span> dataObject<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token comment">/*<br>			 * process event array<br>			 */</span><br>			<span class="token keyword">for</span> <span class="token punctuation">(</span> <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> n <span class="token operator">&lt;</span> eventArray<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> n<span class="token operator">++</span> <span class="token punctuation">)</span><br>			<span class="token punctuation">{</span><br>				eventObject <span class="token operator">=</span> eventArray<span class="token punctuation">.</span><span class="token function">getJSONObject</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>				<br>				<span class="token comment">/*<br>				 * these props need to go into each event, as within the subsequent queue, there is no "batch" but single events<br>				 */</span><br>				<span class="token keyword">for</span> <span class="token punctuation">(</span> <span class="token class-name">String</span> prop <span class="token operator">:</span> copyProps <span class="token punctuation">)</span> <span class="token punctuation">{</span><br>					<span class="token keyword">if</span> <span class="token punctuation">(</span> dataObject<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>prop<span class="token punctuation">)</span> <span class="token punctuation">)</span><br>						eventObject<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>prop<span class="token punctuation">,</span> dataObject<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>prop<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>				<span class="token punctuation">}</span><br>				<br>				<span class="token comment">/*<br>				 * validate event data<br>				 */</span><br>				<span class="token class-name">MediaPoolEvent</span> event <span class="token operator">=</span> <span class="token function">requestValidation</span><span class="token punctuation">(</span>eventObject<span class="token punctuation">)</span><span class="token punctuation">;</span><br>				<br>				<span class="token keyword">if</span> <span class="token punctuation">(</span> event <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token punctuation">)</span><br>				<span class="token punctuation">{</span><br>					<span class="token comment">/*<br>					 * Test event, we just respond with a 202 and event data as content,<br>					 * no futher processing!<br>					 */</span><br>					<span class="token keyword">if</span> <span class="token punctuation">(</span> event<span class="token punctuation">.</span><span class="token function">getEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token class-name">MediaPoolWebHookEvents</span><span class="token punctuation">.</span><span class="token class-name">Event</span><span class="token punctuation">.</span>TEST <span class="token punctuation">)</span> <span class="token punctuation">{</span><br>						responseArray<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>					<span class="token punctuation">}</span><br>					<span class="token keyword">else</span> <span class="token punctuation">{</span><br>					<br>						<span class="token comment">/*<br>						 * if the event is not dedicated to one of the two WebCache Channels, it must not be queued<br>						 * if not, we just guzzle up the event, send an "accepted" back but actually are doing nothing<br>						 */</span><br>						<span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>event<span class="token punctuation">.</span><span class="token function">mustHaveChannel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> event<span class="token punctuation">.</span><span class="token function">isWebCacheChannel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <br>						<span class="token punctuation">{</span><br>							<span class="token comment">/*<br>							 * Check whether we know the tenant by system and customer ID<br>							 */</span><br>							<span class="token class-name">WebCacheTenant</span> tenant <span class="token operator">=</span> tenantProvider<span class="token punctuation">.</span><span class="token function">getTenantBySystemAndCustomerId</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">getSystemId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span><span class="token function">getCustomerId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<br>							<span class="token keyword">if</span> <span class="token punctuation">(</span> tenant <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span><br>								eventObject<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span>  <span class="token string">"System ID and/or Customer ID unknown."</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>								<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MediaPoolSyncJobException</span><span class="token punctuation">(</span><span class="token string">"No tenant found."</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>							<span class="token punctuation">}</span><br>							event<span class="token punctuation">.</span><span class="token function">setTenantId</span><span class="token punctuation">(</span>tenant<span class="token punctuation">.</span><span class="token function">getAccountId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<br>							<span class="token keyword">if</span> <span class="token punctuation">(</span> DEBUG <span class="token punctuation">)</span> LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"MP Sync Request: "</span> <span class="token operator">+</span> event<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<br>							<span class="token comment">// this user is running the import later</span><br>							<span class="token class-name">Principal</span> userPrincipal <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getUserPrincipal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>							<span class="token keyword">if</span> <span class="token punctuation">(</span> userPrincipal <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token punctuation">)</span><br>								event<span class="token punctuation">.</span><span class="token function">setUser</span><span class="token punctuation">(</span>userPrincipal<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>							<span class="token keyword">else</span><br>								event<span class="token punctuation">.</span><span class="token function">setUser</span><span class="token punctuation">(</span><span class="token string">"anonymous"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<br>							<span class="token keyword">if</span> <span class="token punctuation">(</span> queueActivated <span class="token operator">||</span> eventObject<span class="token punctuation">.</span><span class="token function">optBoolean</span><span class="token punctuation">(</span><span class="token string">"BenGurion"</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><br>								<span class="token function">addMediaPoolSyncJob</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span><br>							<span class="token keyword">else</span><br>								LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"MP Sync Request but queueing deactivated"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<br>							responseArray<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>						<span class="token punctuation">}</span><br>						<span class="token keyword">else</span> <span class="token punctuation">{</span><br>							<br>							eventObject<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span>  <span class="token string">"not a webcache channel: "</span> <span class="token operator">+</span> event<span class="token punctuation">.</span><span class="token function">getChannelsFromPayload</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>							responseArray<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>eventObject<span class="token punctuation">)</span><span class="token punctuation">;</span><br>							<br>							LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"not a webcache channel: "</span> <span class="token operator">+</span> event<span class="token punctuation">.</span><span class="token function">getChannelsFromPayload</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>						<span class="token punctuation">}</span><br>					<span class="token punctuation">}</span><br>				<span class="token punctuation">}</span><br>				<span class="token keyword">else</span> <span class="token punctuation">{</span><br>					<span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token class-name">Status</span><span class="token punctuation">.</span>BAD_REQUEST<span class="token punctuation">)</span><br>			                <span class="token punctuation">.</span><span class="token function">entity</span><span class="token punctuation">(</span> <span class="token string">"{\"error\": \"Problems parsing event data.\" } "</span> <span class="token punctuation">)</span><br>			                <span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><br>			                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>				<span class="token punctuation">}</span><br>			<span class="token punctuation">}</span><br>			<br>			<span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token class-name">Status</span><span class="token punctuation">.</span>ACCEPTED<span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">entity</span><span class="token punctuation">(</span> responseArray<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>		<span class="token punctuation">}</span><br>		<span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">JSONException</span> e<span class="token punctuation">)</span><br>		<span class="token punctuation">{</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"A JSON error occured"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"(1) Invalid MP Sync Request: "</span> <span class="token operator">+</span> requestBody <span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token class-name">Status</span><span class="token punctuation">.</span>BAD_REQUEST<span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">entity</span><span class="token punctuation">(</span> <span class="token string">"{\"error\": \"invalid JSON in request.\" } "</span> <span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<span class="token punctuation">}</span><br>		<span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">MediaPoolSyncJobException</span> e<span class="token punctuation">)</span><br>		<span class="token punctuation">{</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"An error occured"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"(2) Invalid MP Sync Request: "</span> <span class="token operator">+</span> requestBody <span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token keyword">try</span><br>			<span class="token punctuation">{</span><br>				<span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token class-name">Status</span><span class="token punctuation">.</span>BAD_REQUEST<span class="token punctuation">)</span><br>				        <span class="token punctuation">.</span><span class="token function">entity</span><span class="token punctuation">(</span> eventObject<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><br>				        <span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><br>				        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token punctuation">}</span><br>			<span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">JSONException</span> e1<span class="token punctuation">)</span><br>			<span class="token punctuation">{</span><br>				LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"A JSON error occured"</span><span class="token punctuation">,</span> e1<span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token punctuation">}</span><span class="token punctuation">;</span><br>		<span class="token punctuation">}</span><br>		<span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><br>		<span class="token punctuation">{</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"A general error occured"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"(4) Invalid MP Sync Request: "</span> <span class="token operator">+</span> requestBody <span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token class-name">Status</span><span class="token punctuation">.</span>BAD_REQUEST<span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">entity</span><span class="token punctuation">(</span> <span class="token string">"{\"error\": \"Request not processed.\" } "</span> <span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><br>	                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<span class="token punctuation">}</span><br>		<span class="token keyword">finally</span><br>		<span class="token punctuation">{</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"Finished processing webhook request from "</span> <span class="token operator">+</span> request<span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token class-name">WebCacheConstants</span><span class="token punctuation">.</span>EFFECTIVE_CLIENTIP_ADDRESS_HEADER<span class="token punctuation">)</span> <span class="token operator">+</span><br>					<span class="token string">" in "</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" msec"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<span class="token punctuation">}</span><br><br>		LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> <span class="token string">"(3) Invalid MP Sync Request: "</span> <span class="token operator">+</span> requestBody <span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token class-name">Status</span><span class="token punctuation">.</span>BAD_REQUEST<span class="token punctuation">)</span><br>                <span class="token punctuation">.</span><span class="token function">entity</span><span class="token punctuation">(</span> <span class="token string">"{\"error\": \"Request not processed.\" } "</span> <span class="token punctuation">)</span><br>                <span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><br>                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><br>	<span class="token punctuation">}</span><br><br><br>	<span class="token comment">/**<br>	 * Validates the request data and returns an event Object if valid, otherwise null.<br>	 * Error messages are put back into therequest object as "error": "message..."<br>	 *<br>	 * @param requestObject<br>	 * @return true if data is valid, false otherwise<br>	 * @throws JSONException<br>	 *<br>	 */</span><br>	<span class="token keyword">private</span> <span class="token class-name">MediaPoolEvent</span> <span class="token function">requestValidation</span><span class="token punctuation">(</span><span class="token class-name">JSONObject</span> requestObject<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">JSONException</span><span class="token punctuation">,</span> <span class="token class-name">MediaPoolSyncJobException</span><span class="token punctuation">,</span> <span class="token class-name">Exception</span><br>	<span class="token punctuation">{</span><br>		<span class="token class-name">MediaPoolEvent</span> event <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span><br>		<span class="token keyword">try</span><br>		<span class="token punctuation">{</span><br>			event <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaPoolEvent</span><span class="token punctuation">(</span>requestObject<span class="token punctuation">)</span><span class="token punctuation">;</span><br>		<span class="token punctuation">}</span><br>		<span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><br>		<span class="token punctuation">{</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> requestObject<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>			LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token class-name">WebCacheUtils</span><span class="token punctuation">.</span>MARK<span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span><br>			requestObject<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>			<span class="token keyword">throw</span> e<span class="token punctuation">;</span><br>		<span class="token punctuation">}</span><br><br>		<span class="token keyword">return</span> event<span class="token punctuation">;</span><br>	<span class="token punctuation">}</span><br><br><br>	<span class="token comment">/**<br>	 * Create an importer Job to sync the assigned information<br>	 * @param asset<br>	 * @param request<br>	 * @throws MediaPoolSyncJobException<br>	 * @throws Exception<br>	 */</span><br>	<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">addMediaPoolSyncJob</span><span class="token punctuation">(</span><span class="token class-name">MediaPoolEvent</span> event<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">MediaPoolSyncJobException</span><br>   <span class="token punctuation">{</span><br>        <span class="token comment">// add necessary objects for conversion:</span><br>        <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> eventMap <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">final</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> props <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        props<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>PROP_MEDIAPOOLEVENT<span class="token punctuation">,</span>  eventMap<span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>        <span class="token class-name">Job</span> job <span class="token operator">=</span> jobManager<span class="token punctuation">.</span><span class="token function">createJob</span><span class="token punctuation">(</span>IMPORTER_JOB_TOPIC<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">properties</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span> job <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        	LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"No Job created "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        	<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MediaPoolSyncJobException</span><span class="token punctuation">(</span><span class="token string">"No job created"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>        <span class="token keyword">else</span><br>        	LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Job "</span> <span class="token operator">+</span> job<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" created in: "</span> <span class="token operator">+</span> job<span class="token punctuation">.</span><span class="token function">getQueueName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>   <span class="token punctuation">}</span></code></pre>
+
+            </section>
+        </main>
+    </body>
+</html>
